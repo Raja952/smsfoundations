@@ -1,0 +1,140 @@
+<div class="commission-page">
+
+  <!-- Hero -->
+  <section class="cc-page-hero">
+    <div class="cc-hero-shapes">
+      <div class="shape s1"></div>
+      <div class="shape s2"></div>
+    </div>
+    <div class="container">
+      <div class="cc-hero-inner">
+        <div class="cc-hero-badge">
+          <span class="badge-dot"></span>
+          Earnings Structure
+        </div>
+        <h1>Commission <span>Chart</span></h1>
+        <p>SMS Foundation — Rank based commission &amp; earnings structure</p>
+        <div class="breadcrumb">
+          <a routerLink="/">Home</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+          <span>Commission Chart</span>
+        </div>
+      </div>
+    </div>
+    <div class="cc-hero-wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none">
+        <path d="M0,0 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="#f4f6fa"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="cc-page-content">
+    <div class="container">
+
+      <!-- Desktop Table -->
+      <div class="cc-table-wrap" data-aos="fade-up">
+        <table class="cc-table">
+          <thead>
+            <tr>
+              <th>Sr.</th>
+              <th>Rank</th>
+              <th class="highlight-col">Commission</th>
+              <th>Team Size</th>
+              <th>Target 50%</th>
+              <th>Monthly Business</th>
+              <th>Target 60%</th>
+              <th>Team 40%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of commissionData; let i = index"
+                [class.gold-row]="i === 0"
+                [class.silver-row]="i === 1">
+              <td class="cc-sr">{{ row.srNo }}</td>
+              <td class="cc-rank">
+                <span class="rank-badge" [class]="'rank-' + (i+1)">{{ row.rank }}</span>
+              </td>
+              <td class="highlight-col" style="text-align:center;">
+                <span class="commission-pill">{{ row.commission }}</span>
+              </td>
+              <td class="cc-num">{{ row.teamStructure | number }}</td>
+              <td class="cc-num">{{ row.target50 | number }}</td>
+              <td class="cc-num cc-money">₹{{ row.monthlyBusiness | number }}</td>
+              <td class="cc-num cc-money">₹{{ row.target60 | number }}</td>
+              <td class="cc-num cc-money">₹{{ row.team40 | number }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile Cards -->
+      <div class="cc-cards-wrap">
+        <div class="cc-card"
+             *ngFor="let row of commissionData; let i = index"
+             [class.cc-card-gold]="i === 0"
+             data-aos="fade-up"
+             [attr.data-aos-delay]="i * 80">
+          <div class="cc-card-top">
+            <div class="cc-card-rank">
+              <span class="rank-badge" [class]="'rank-' + (i+1)">{{ row.rank }}</span>
+              <span class="cc-sr-badge">#{{ row.srNo }}</span>
+            </div>
+            <span class="commission-pill large">{{ row.commission }}</span>
+          </div>
+          <div class="cc-card-grid">
+            <div class="cc-card-item">
+              <span class="cc-card-label">Team Size</span>
+              <span class="cc-card-value">{{ row.teamStructure | number }}</span>
+            </div>
+            <div class="cc-card-item">
+              <span class="cc-card-label">Target 50%</span>
+              <span class="cc-card-value">{{ row.target50 | number }}</span>
+            </div>
+            <div class="cc-card-item">
+              <span class="cc-card-label">Monthly Business</span>
+              <span class="cc-card-value money">₹{{ row.monthlyBusiness | number }}</span>
+            </div>
+            <div class="cc-card-item">
+              <span class="cc-card-label">Target 60%</span>
+              <span class="cc-card-value money">₹{{ row.target60 | number }}</span>
+            </div>
+            <div class="cc-card-item">
+              <span class="cc-card-label">Team 40%</span>
+              <span class="cc-card-value money">₹{{ row.team40 | number }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Note -->
+      <div class="cc-note" data-aos="fade-up">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Commission is calculated on monthly business targets.
+        Contact your upline for more details.
+      </div>
+
+      <!-- CTA -->
+      <div class="cc-cta" data-aos="fade-up">
+        <a routerLink="/signup/member" class="cc-cta-btn">
+          Join Now &amp; Start Earning
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</div>

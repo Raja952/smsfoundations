@@ -1,0 +1,522 @@
+<div class="home-page">
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="hero">
+
+    <!-- Animated background shapes -->
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Background Logo Watermark -->
+    <div class="hero-logo-background">
+      <img src="assets/Images/LOGO/Logo.jpeg" alt="SMS Foundation Logo">
+    </div>
+
+    <div class="container">
+
+      <!-- Top eyebrow tag -->
+      <div class="welcome-header" data-aos="fade-down">
+
+        <!-- Ganesh Ji Image -->
+        <div class="hero-ganesh">
+          <img src="assets/Images/ganeshji.jpg" alt="Shree Ganesh Ji" class="ganesh-img">
+        </div>   
+
+        <!-- Social Welfare Pill (shifted below Ganesh image) -->
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          Social Welfare Organisation
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="welcome-title">
+          Welcome To <span class="highlight">SMS Foundation</span>
+        </h1>
+
+        <!-- Hindi Subtitle -->
+        <h2 class="welcome-subtitle">
+          <span class="highlight" style="color: #23bff5 !important;">
+            समर्थ महिला संकल्प फाउंडेशन
+          </span>
+        </h2>
+
+        <!-- Slogan -->
+        <div class="hero-slogan">
+          <span class="slogan-line">
+            "संस्था का एक ही संकल्प !! मातृत्व समर्थ हो, यही विकल्प !!"
+          </span>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="hero-actions" data-aos="fade-up" data-aos-delay="200">
+          <a routerLink="/about" class="btn-primary-hero">
+            About Us
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+
+          <!-- Join Movement with hover dropdown -->
+          <div class="join-wrapper">
+            <a class="btn-outline-hero">
+              Join Movement
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </a>
+            <div class="join-dropdown">
+              <a routerLink="/signup/member" class="join-option">
+                <span class="join-icon">👤</span>
+                <div>
+                  <strong>Member</strong>
+                  <small>Join as a Member</small>
+                </div>
+              </a>
+              <a routerLink="/signup/worker" class="join-option">
+                <span class="join-icon">🔧</span>
+                <div>
+                  <strong>Worker</strong>
+                  <small>Join as a Worker</small>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- <div class="hero-trust" data-aos="fade-up" data-aos-delay="300">
+          <div class="trust-item">
+            <strong>10,000+</strong>
+            <span>Members</span>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <strong>ISO</strong>
+            <span>Certified</span>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <strong>Pan India</strong>
+            <span>Network</span>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+
+    <!-- Wave Bottom -->
+    <div class="hero-wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,0 C360,80 1080,0 1440,60 L1440,80 L0,80 Z" fill="#f8f9fb"/>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       STATS STRIP — Product Images
+  ═══════════════════════════════════════════════════ -->
+
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" *ngFor="let stat of stats" data-aos="fade-up">
+          <div class="stat-image">
+            <img [src]="stat.img" [alt]="stat.label">
+            <div class="stat-badge"></div>
+          </div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       MISSION SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="mission-section">
+    <div class="container">
+
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Who We Are</span>
+        <h2>Empowering Society Through<br><span>Health &amp; Welfare</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="mission-layout" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- Left: Description + Slogans -->
+        <div class="mission-text">
+          <p class="mission-description">
+            SMS Foundation is a social organization dedicated to health security, wealth management,
+            and social welfare activities. We empower communities by providing affordable healthcare
+            solutions and creating sustainable employment opportunities across India.
+          </p>
+
+          <div class="mission-slogans">
+            <div class="slogan-card">
+              <div class="slogan-icon">
+                <img src="assets/Images/LOGO/Logo.jpeg" alt="SMS Foundation Logo">
+              </div>
+              <p>"संस्था का एक ही संकल्प !! मातृत्व समर्थ हो, यही विकल्प !!"</p>
+            </div>
+            <div class="slogan-card">
+              <div class="slogan-icon">💪</div>
+              <p>"सशक्त नारी समृद्धि नारी"</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Pillars -->
+        <div class="mission-pillars">
+          <div class="pillar" data-aos="fade-left" data-aos-delay="100">
+            <div class="pillar-icon">🏥</div>
+            <h4>Health Security</h4>
+            <p>Affordable healthcare and hygiene solutions for every family.</p>
+          </div>
+          <div class="pillar" data-aos="fade-left" data-aos-delay="200">
+            <div class="pillar-icon">💰</div>
+            <h4>Wealth Management</h4>
+            <p>Financial literacy and income opportunities for communities.</p>
+          </div>
+          <div class="pillar" data-aos="fade-left" data-aos-delay="300">
+            <div class="pillar-icon">🤝</div>
+            <h4>Social Welfare</h4>
+            <p>Building stronger communities through collective action.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       PRODUCTS SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="products-section">
+    <div class="container">
+
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">What We Offer</span>
+        <h2>Our <span>Products &amp; Technology</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Product Card -->
+        <div class="product-card" data-aos="fade-right">
+          <div class="product-badge-new">✨ New</div>
+
+          <div class="product-header">
+            <div class="product-title-wrap">
+              <h3>SMS Care Sanitary Pads</h3>
+              <span class="product-sub">Premium Hygiene Product</span>
+            </div>
+            <div class="product-price-tag">
+              <span class="price-label">MRP</span>
+              <span class="price-amount">₹125</span>
+              <span class="price-unit">/ pack</span>
+            </div>
+          </div>
+
+          <div class="product-image-wrap">
+            <img src="assets/product.png" alt="SMS Care Pads" onerror="this.style.display='none'">
+            <div class="product-image-placeholder">
+              <div class="placeholder-logo-wrap">
+                <img src="assets/Images/PAD.jpeg" alt="SMS Foundation Logo">
+              </div>
+              <p class="placeholder-title">SMS Care Pads</p>
+              <p class="placeholder-sub">Premium Anion Sanitary Pads</p>
+            </div>
+          </div>
+
+          <ul class="product-specs">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#23bff5" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <strong>Pack:</strong>&nbsp;1 Pack = 7 Ultra Soft Pads
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#23bff5" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <strong>Material:</strong>&nbsp;Premium Cotton for Maximum Comfort
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#23bff5" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <strong>Usage:</strong>&nbsp;Day &amp; Night (240mm / 280mm)
+            </li>
+          </ul>
+
+          <a routerLink="/products" class="btn-product">View Product Details</a>
+        </div>
+
+        <!-- Technology Card -->
+        <div class="technology-card" data-aos="fade-left">
+
+          <div class="tech-header">
+            <div class="tech-icon-wrap">⚡</div>
+            <div>
+              <h3>Anion Technology</h3>
+              <span class="tech-sub">India's Latest Innovation</span>
+            </div>
+          </div>
+
+          <p class="tech-desc">
+            SMS Care products feature advanced Anion Negative Ion Technology that delivers
+            powerful health benefits for women's wellness and comfort.
+          </p>
+
+          <div class="tech-badge-strip">
+            India's Latest Negative Ion Technology
+          </div>
+
+          <ul class="benefits-list">
+            <li>
+              <div class="benefit-icon">❤️</div>
+              <div>
+                <strong>Pain Relief</strong>
+                <span>Reduces menstrual pain &amp; discomfort</span>
+              </div>
+            </li>
+            <li>
+              <div class="benefit-icon">🛡️</div>
+              <div>
+                <strong>Antibacterial</strong>
+                <span>Lowers infection risk naturally</span>
+              </div>
+            </li>
+            <li>
+              <div class="benefit-icon">⚖️</div>
+              <div>
+                <strong>Hormone Balance</strong>
+                <span>Helps balance hormones naturally</span>
+              </div>
+            </li>
+            <li>
+              <div class="benefit-icon">😊</div>
+              <div>
+                <strong>Wellbeing</strong>
+                <span>Reduces stress &amp; promotes overall health</span>
+              </div>
+            </li>
+          </ul>
+
+          <a routerLink="/products/anion" class="btn-product outline">Learn More About Anion Tech</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       FEATURES SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="features-section">
+    <div class="container">
+
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Why Choose Us</span>
+        <h2>Key <span>Features</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card"
+             *ngFor="let feature of features; let i = index"
+             data-aos="fade-up"
+             [attr.data-aos-delay]="i * 80">
+          <div class="feature-icon-wrap">
+            <i [class]="feature.icon"></i>
+          </div>
+          <h4>{{ feature.title }}</h4>
+          <p>{{ feature.description }}</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       JOIN MOVEMENT SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="join-section">
+    <div class="container">
+
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Get Involved</span>
+        <h2>Join Our <span>Movement</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="join-grid">
+
+        <!-- Member Card -->
+        <div class="join-card member-card-join" data-aos="fade-up" data-aos-delay="0">
+
+          <div class="join-card-header">
+            <div class="join-card-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+              👥
+            </div>
+            <div>
+              <h3>Become a Member</h3>
+              <p>Join our community for exclusive benefits</p>
+            </div>
+          </div>
+
+          <div class="fee-row">
+            <span class="fee-label">Registration</span>
+            <span class="fee-amount">₹200/-</span>
+          </div>
+
+          <div class="member-benefits-list">
+            <div class="member-benefit-item">
+              <div class="benefit-dot"></div>
+              <div>
+                <strong>Registration:</strong>
+                <span>₹200/- (Valid for 1 Year)</span>
+              </div>
+            </div>
+            <div class="member-benefit-item">
+              <div class="benefit-dot"></div>
+              <div>
+                <strong>Discount:</strong>
+                <span>15% instant relief on Pad purchase</span>
+              </div>
+            </div>
+            <div class="member-benefit-item">
+              <div class="benefit-dot"></div>
+              <div>
+                <strong>Refund:</strong>
+                <span>100% Pad amount return after 18 Months</span>
+              </div>
+            </div>
+            <div class="member-benefit-item">
+              <div class="benefit-dot"></div>
+              <div>
+                <strong>Pregnancy Support:</strong>
+                <span>₹1500 (Boy) / ₹2000 (Girl)</span>
+              </div>
+            </div>
+          </div>
+
+          <a routerLink="/signup/member" class="btn-join btn-join-green">
+            Join as Member — ₹200/-
+          </a>
+        </div>
+
+
+        <!-- Worker Card -->
+        <div class="join-card" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="join-card-header">
+            <div class="join-card-icon">🤝</div>
+            <div>
+              <h3>Become a Worker</h3>
+              <p>Be a part of social change and build your career</p>
+            </div>
+          </div>
+
+          <div class="fee-row">
+            <span class="fee-label">Joining Fee</span>
+            <span class="fee-amount">₹1,200/-</span>
+          </div>
+
+          <div class="req-benefits-grid">
+            <div class="req-block">
+              <h5>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                Requirements
+              </h5>
+              <ul>
+                <li>📸 2 Passport Photos</li>
+                <li>🪪 Government ID Proof</li>
+                <li>🏦 Bank Account Details</li>
+                <li>✍️ Signature</li>
+              </ul>
+            </div>
+
+            <div class="benefits-block">
+              <h5>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                  <path d="M20 12v10H4V12"/>
+                  <path d="M22 7H2v5h20V7z"/>
+                  <path d="M12 22V7"/>
+                  <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/>
+                  <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+                </svg>
+                You Get
+              </h5>
+              <ul>
+                <li>🪪 ID Card</li>
+                <li>📦 Starter Kit</li>
+                <li>💻 Software Access</li>
+                <li>🔑 Working Permit &amp; Unique Code</li>
+              </ul>
+            </div>
+          </div>
+
+          <a routerLink="/signup/worker" class="btn-join">Join Now — ₹1,200/-</a>
+        </div>
+
+
+        <!-- ISO Certificate Card -->
+        <div class="iso-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="iso-glow"></div>
+
+          <div class="iso-badge">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+                 stroke="#23bff5" stroke-width="1.5">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+
+          <div class="iso-content">
+            <span class="iso-label">Quality Certified</span>
+            <h3>ISO 9001:2015</h3>
+            <p class="iso-org">Samarth Mahila Sankalp Foundation</p>
+            <p class="iso-desc">
+              Proudly certified under ISO 9001:2015 standards, ensuring the highest
+              quality in all operations and social initiatives.
+            </p>
+            <div class="iso-details">
+              <div class="iso-detail-row">
+                <span class="detail-label">Certificate No.</span>
+                <span class="detail-value">DGJUK/1133/MQ/02</span>
+              </div>
+              <div class="iso-detail-row">
+                <span class="detail-label">Valid Until</span>
+                <span class="detail-value">03.08.2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="iso-footer-strip">
+            ✅ Internationally Recognised Quality Standard
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>

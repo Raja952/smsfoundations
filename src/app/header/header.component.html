@@ -1,0 +1,251 @@
+<header class="site-header" [class.scrolled]="isScrolled" [class.hidden]="!isHeaderVisible">
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="topbar-contacts">
+          <a href="tel:+919336228931" class="topbar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 11.5 19.79 19.79 0 01.88 2.86 2 2 0 012.86.67h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+            </svg>
+            <span class="contact-text"> Customer Care No. 022 35635478</span>
+          </a>
+          <span class="topbar-divider"></span>
+          <a href="mailto:info@smsfoundation.org" class="topbar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="contact-text">info@smsfoundation.org</span>
+          </a>
+          <a href="https://maps.google.com/?q=Gopal Sadan Building Andheri East Mumbai"
+             target="_blank"
+             class="topbar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="contact-text">Shop no.1 Gopal Sadan Building, Near Sani Mandir ,Jija Mata Road, Pump House, Andheri East,Mumbai – 400093</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        
+        <!-- Logo -->
+        <a class="navbar-brand" routerLink="/">
+          <div class="brand-logo">
+            <img src="assets/Images/LOGO/Logo.jpeg" alt="SMS Foundation Logo" class="logo-icon-img">
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">SMS <strong>Foundation</strong></span>
+            <span class="brand-tagline">Empowering Communities</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about" routerLinkActive="active">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/gallery" routerLinkActive="active">Gallery</a>
+          </li>
+          <li class="nav-item nav-dropdown" [class.open]="isDropdownOpen" (clickOutside)="closeDropdown()">
+            <button class="nav-link dropdown-trigger" (click)="toggleDropdown($event)">
+              Products
+              <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="dropdown-panel" [class.show]="isDropdownOpen">
+              <div class="dropdown-inner">
+                <a class="dropdown-link" routerLink="/products" (click)="closeMenu()">
+                  <span class="dropdown-icon">🌸</span>
+                  <span class="dropdown-content">
+                    <strong>Sanitary Pads</strong>
+                    <small>Hygiene &amp; health products</small>
+                  </span>
+                </a>
+                <a class="dropdown-link" routerLink="/products/anion" (click)="closeMenu()">
+                  <span class="dropdown-icon">⚡</span>
+                  <span class="dropdown-content">
+                    <strong>Anion Technology</strong>
+                    <small>Advanced wellness solutions</small>
+                  </span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-link" routerLink="/products/new" (click)="closeMenu()">
+                  <span class="dropdown-icon">✨</span>
+                  <span class="dropdown-content">
+                    <strong>New Arrivals</strong>
+                    <small>Latest products</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active">Our Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/commission" routerLinkActive="active">Commission Chart</a>
+          </li>
+        </ul>
+
+        <!-- Right Side - CTA + Hamburger -->
+        <div class="navbar-right">
+          <!-- Sign Up Dropdown (Desktop) -->
+          <div class="signup-dropdown" 
+               (mouseenter)="isSignupOpen = true" 
+               (mouseleave)="isSignupOpen = false">
+            <button class="btn-cta" (click)="toggleSignupDropdown($event)">
+              Sign Up
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="signup-dropdown-menu" [class.show]="isSignupOpen">
+              <a routerLink="/signup/member" class="signup-option" (click)="isSignupOpen = false; closeMenu()">
+                <span class="signup-icon">👤</span>
+                <span class="signup-content">
+                  <strong>Member</strong>
+                  <small>Join as a community member</small>
+                </span>
+              </a>
+              <a routerLink="/signup/worker" class="signup-option" (click)="isSignupOpen = false; closeMenu()">
+                <span class="signup-icon">🛠️</span>
+                <span class="signup-content">
+                  <strong>Worker</strong>
+                  <small>Join as a field worker</small>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hamburger -->
+          <button class="hamburger-btn" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" [class.open]="isMenuOpen">
+    <div class="drawer-header">
+      <div class="brand-text">
+        <span class="brand-name">SMS <strong>Foundation</strong></span>
+        <span class="brand-tagline">Empowering Communities</span>
+      </div>
+      <button class="drawer-close" (click)="closeMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <ul class="drawer-nav">
+      <li>
+        <a class="drawer-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">
+          <span>Home</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="drawer-link" routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+          <span>About Us</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="drawer-link" routerLink="/gallery" routerLinkActive="active" (click)="closeMenu()">
+          <span>Gallery</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </li>
+      
+      <!-- Products Accordion in Mobile -->
+      <li class="drawer-accordion" [class.open]="isMobileProductsOpen">
+        <button class="drawer-link accordion-trigger" (click)="toggleMobileProducts($event)">
+          <span>Products</span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="accordion-body">
+          <a class="drawer-sub-link" routerLink="/products" (click)="closeMenu()">🌸 Sanitary Pads</a>
+          <a class="drawer-sub-link" routerLink="/products/anion" (click)="closeMenu()">⚡ Anion Technology</a>
+          <a class="drawer-sub-link" routerLink="/products/new" (click)="closeMenu()">✨ New Arrivals</a>
+        </div>
+      </li>
+      
+      <li>
+        <a class="drawer-link" routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+          <span>Our Team</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </li>
+      
+      <li>
+        <a class="drawer-link" routerLink="/commission" routerLinkActive="active" (click)="closeMenu()">
+          <span>Commission Chart</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </li>
+      
+      <!-- Mobile Signup Options -->
+      <li class="drawer-divider">
+        <hr>
+      </li>
+      
+      <li>
+        <a class="drawer-link" routerLink="/signup/member" (click)="closeMenu()">
+          <span>👤 Member Signup</span>
+        </a>
+      </li>
+      
+      <li>
+        <a class="drawer-link" routerLink="/signup/worker" (click)="closeMenu()">
+          <span>🛠️ Worker Signup</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="drawer-footer">
+      <div class="drawer-contacts">
+        <a href="tel:+919336228931">Customer Care No. 022 35635478</a>
+        <a href="mailto:info@smsfoundation.org">✉️ info@smsfoundation.org</a>
+        <a href="https://maps.google.com/?q=Gopal Sadan Building Andheri East Mumbai" target="_blank">
+          📍 Gopal Sadan Building, Andheri East, Mumbai
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

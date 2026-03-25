@@ -1,0 +1,608 @@
+<div class="contact-page">
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="contact-hero">
+    <div class="hero-shapes">
+      <div class="shape s1"></div>
+      <div class="shape s2"></div>
+      <div class="shape s3"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          We're Here to Help
+        </div>
+        <h1>Get In <span>Touch</span></h1>
+        <p>Have a question, want to join our mission, or just want to say hello? We'd love to hear from you.</p>
+        <div class="breadcrumb">
+          <a routerLink="/">Home</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+          <span>Contact Us</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none">
+        <path d="M0,0 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="#f4f6fa"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       INFO CARDS SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="info-section">
+    <div class="container">
+
+      <!-- Alerts -->
+      <div class="alert alert-success" *ngIf="successMessage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        {{ successMessage }}
+        <button class="alert-close" (click)="successMessage = ''">×</button>
+      </div>
+
+      <div class="alert alert-error" *ngIf="errorMessage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+        {{ errorMessage }}
+        <button class="alert-close" (click)="errorMessage = ''">×</button>
+      </div>
+
+  
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       TEAM MEMBERS SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="contacts-section">
+    <div class="container">
+      <div class="contacts-section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Our Team</span>
+        <h2>Meet Our <span>Members</span></h2>
+        <p>The dedicated people behind SMS Foundation's mission</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contacts-grid">
+        <div class="member-card"
+             *ngFor="let con of Contacts; let i = index"
+             data-aos="fade-up"
+             [attr.data-aos-delay]="i * 60"
+             (mouseenter)="onMouseEnter(con, $event)"
+             (mouseleave)="onMouseLeave()"
+             (click)="openModal(con, $event)"
+             role="button"
+             tabindex="0"
+             (keyup.enter)="openModal(con)">
+
+          <!-- Member Image or Avatar -->
+          <div class="member-image">
+            <img *ngIf="con.img"
+                 class="memImage"
+                 [src]="con.img"
+                 [alt]="con.alt || con.name"
+                 (error)="onImageError(con)">
+
+            <div *ngIf="!con.img" class="member-avatar">
+              <span>{{ getInitials(con.name) }}</span>
+            </div>
+
+            <div class="member-overlay"></div>
+
+            <!-- Hover Icon -->
+            <div class="member-hover-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Member Info -->
+          <div class="info-card-body">
+            <h4 class="member-name" [title]="con.name">{{ con.name }}</h4>
+            <span class="member-role">{{ con.role }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       CONTACT FORM + MAP SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section class="main-section">
+    <div class="container">
+      <div class="main-grid">
+
+        <!-- Contact Form -->
+        <div class="form-wrap" data-aos="fade-right">
+          <div class="form-card">
+            <div class="form-card-header">
+              <div class="header-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </div>
+              <div>
+                <h3>Send Us a Message</h3>
+                <p>We'll get back to you within 24 hours</p>
+              </div>
+            </div>
+
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+              <div class="form-row-2">
+                <div class="field-group">
+                  <label class="field-label">Full Name <span class="req">*</span></label>
+                  <div class="input-wrap" [class.error]="isFieldInvalid('name')">
+                    <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <input type="text" formControlName="name" placeholder="Your full name">
+                  </div>
+                  <span class="field-error" *ngIf="getFieldError('name', 'required')">Name is required</span>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label">Email Address <span class="req">*</span></label>
+                  <div class="input-wrap" [class.error]="isFieldInvalid('email')">
+                    <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <input type="email" formControlName="email" placeholder="Your email address">
+                  </div>
+                  <span class="field-error" *ngIf="getFieldError('email', 'required')">Email is required</span>
+                  <span class="field-error" *ngIf="getFieldError('email', 'email')">Enter a valid email</span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Subject</label>
+                <div class="input-wrap">
+                  <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                  </svg>
+                  <input type="text" formControlName="subject" placeholder="What is this about?">
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Message <span class="req">*</span></label>
+                <div class="input-wrap textarea-wrap" [class.error]="isFieldInvalid('message')">
+                  <svg class="input-icon top" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path>
+                  </svg>
+                  <textarea formControlName="message" rows="5" placeholder="Write your message here..."></textarea>
+                </div>
+                <span class="field-error" *ngIf="getFieldError('message', 'required')">Message is required</span>
+              </div>
+
+              <button type="submit" class="btn-submit" [disabled]="loading">
+                <span *ngIf="!loading">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                  Send Message
+                </span>
+                <span *ngIf="loading" class="loading-state">
+                  <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"></circle>
+                  </svg>
+                  Sending...
+                </span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Social Media Strip -->
+          <div class="social-strip" data-aos="fade-up">
+            <span>Follow Us</span>
+            <div class="socials">
+              <a href="#" class="soc-btn" aria-label="Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a href="#" class="soc-btn" aria-label="Twitter">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a href="#" class="soc-btn" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="#" class="soc-btn" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-wrap" data-aos="fade-left">
+          <div class="map-card">
+            <div class="map-card-header">
+              <div class="header-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <h3>Our Location</h3>
+                <p>Andheri East, Mumbai – 400093</p>
+              </div>
+            </div>
+
+            <div class="map-frame">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.405348402873!2d72.865239!3d19.113024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c83c05b7fc89%3A0xbe87eb4c6a4a17ee!2sAndheri%20East%2C%20Mumbai%2C%20Maharashtra%20400093!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+
+            <div class="map-footer">
+              <div class="map-address">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Gopal Sadan Building, Near Sani Mandir, Jija Mata Road, Pump House, Andheri East, Mumbai – 400093
+              </div>
+              <a href="https://maps.google.com/?q=Andheri+East+Mumbai"
+                 target="_blank"
+                 rel="noopener"
+                 class="map-directions-btn">
+                Open in Google Maps
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       MEMBER DETAIL MODAL
+  ═══════════════════════════════════════════════════ -->
+
+ <!-- ═══════════════════════════════════════════════════
+     MEMBER DETAIL MODAL - FIXED VERSION
+═══════════════════════════════════════════════════ -->
+
+<!-- Modal Backdrop - with fade effect -->
+<div class="modal-backdrop fade" 
+     *ngIf="showModal" 
+     [class.show]="showModal"
+     (click)="closeModal()">
+</div>
+
+<!-- Modal -->
+<div class="modal" 
+     *ngIf="showModal" 
+     [class.show]="showModal"
+     [style.display]="showModal ? 'block' : 'none'"
+     (mouseleave)="closeModal()">
+
+  <!-- Modal Dialog -->
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-member-info">
+          <span class="modal-role-badge">{{ selectedMember?.role }}</span>
+          <h3 class="modal-member-name">{{ selectedMember?.name }}</h3>
+        </div>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <!-- Member Photo -->
+            <div class="modal-member-photo mb-3">
+              <img *ngIf="selectedMember?.img" 
+                   [src]="selectedMember?.img" 
+                   [alt]="selectedMember?.alt || selectedMember?.name"
+                   class="img-fluid rounded-circle"
+                   style="width: 150px; height: 150px; object-fit: cover;"
+                   >
+              <div *ngIf="!selectedMember?.img" class="modal-avatar rounded-circle d-flex align-items-center justify-content-center mx-auto" 
+                   style="width: 150px; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 48px;">
+                <span>{{ getInitials(selectedMember?.name || '') }}</span>
+              </div>
+            </div>
+            
+            <!-- Quick Contact -->
+            <div class="modal-quick-contact mt-3">
+              <a *ngIf="selectedMember?.phone" 
+                 [href]="'tel:' + selectedMember?.phone" 
+                 class="btn btn-outline-primary btn-sm w-100 mb-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path>
+                </svg>
+                Call
+              </a>
+              <a *ngIf="selectedMember?.email" 
+                 [href]="'mailto:' + selectedMember?.email" 
+                 class="btn btn-outline-primary btn-sm w-100">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Email
+              </a>
+            </div>
+          </div>
+          
+          <div class="col-md-8">
+            <!-- Bio Section -->
+            <div class="modal-bio-section">
+              <h5 class="modal-section-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </h5>
+              <p class="modal-bio">{{ selectedMember?.bio }}</p>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="modal-contact-details mt-4" *ngIf="selectedMember?.phone || selectedMember?.email">
+              <h5 class="modal-section-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Contact Information
+              </h5>
+              
+              <div class="contact-detail-item" *ngIf="selectedMember?.phone">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path>
+                </svg>
+                <span>{{ selectedMember?.phone }}</span>
+              </div>
+              
+              <div class="contact-detail-item" *ngIf="selectedMember?.email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>{{ selectedMember?.email }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+<style>
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+  transition: opacity 0.15s linear;
+  
+  &.fade {
+    opacity: 0;
+    
+    &.show {
+      opacity: 0.5;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  z-index: 1050;
+  display: none;
+  
+  &.show {
+    display: block;
+  }
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 1.75rem auto;
+  max-width: 800px;
+  pointer-events: none;
+  
+  &.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 3.5rem);
+  }
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  outline: 0;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: calc(0.5rem - 1px);
+  border-top-right-radius: calc(0.5rem - 1px);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  
+  .btn-close {
+    color: white;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    opacity: 0.8;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.modal-member-info {
+  .modal-role-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .modal-member-name {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-top: 1px solid #dee2e6;
+  border-bottom-right-radius: calc(0.5rem - 1px);
+  border-bottom-left-radius: calc(0.5rem - 1px);
+}
+
+.modal-section-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  
+  svg {
+    color: #667eea;
+  }
+}
+
+.modal-bio {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  color: #555;
+  
+  svg {
+    color: #667eea;
+    flex-shrink: 0;
+  }
+  
+  span {
+    word-break: break-word;
+  }
+}
+
+.modal-quick-contact {
+  .btn-outline-primary {
+    color: #667eea;
+    border-color: #667eea;
+    
+    &:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-color: transparent;
+    }
+  }
+}
+
+// Animation
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+  transform: translate(0, -50px);
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+}
+</style>

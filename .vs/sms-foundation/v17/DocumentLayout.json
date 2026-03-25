@@ -1,0 +1,344 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\signup\\signup.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\home\\home.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\header\\header.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\footer\\footer.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\footer\\footer.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\signup\\signup.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\gallery\\gallery.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\gallery\\gallery.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\contact\\contact.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\contact\\contact.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\signup\\signup.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\home\\home.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\styles.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\styles.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\footer\\footer.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\footer\\footer.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\header\\header.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Downloads\\header.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\header\\header.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\home\\home.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\contact\\contact.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "signup.component.ts",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\signup\\signup.component.ts",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.ts",
+              "RelativeToolTip": "src\\app\\signup\\signup.component.ts",
+              "ViewState": "AgIAACgAAAAAAAAAAAAowDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-03-24T18:29:28.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "gallery.component.html",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\gallery\\gallery.component.html",
+              "RelativeDocumentMoniker": "src\\app\\gallery\\gallery.component.html",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\gallery\\gallery.component.html",
+              "RelativeToolTip": "src\\app\\gallery\\gallery.component.html",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAuwJYAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-03-14T03:03:24.906Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "signup.component.html",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.html",
+              "RelativeDocumentMoniker": "src\\app\\signup\\signup.component.html",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.html",
+              "RelativeToolTip": "src\\app\\signup\\signup.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-03-14T02:49:44.213Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "home.component.html",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.html",
+              "RelativeDocumentMoniker": "src\\app\\home\\home.component.html",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.html",
+              "RelativeToolTip": "src\\app\\home\\home.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-03-14T02:40:53.067Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "contact.component.html",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.html",
+              "RelativeDocumentMoniker": "src\\app\\contact\\contact.component.html",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.html",
+              "RelativeToolTip": "src\\app\\contact\\contact.component.html",
+              "ViewState": "AgIAAN8AAAAAAAAAAAAIwPEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-03-13T03:18:28.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "header.component.html",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.html",
+              "RelativeDocumentMoniker": "src\\app\\header\\header.component.html",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.html",
+              "RelativeToolTip": "src\\app\\header\\header.component.html",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACAAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-03-14T02:15:53.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "angular.json",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\angular.json",
+              "RelativeDocumentMoniker": "angular.json",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\angular.json",
+              "RelativeToolTip": "angular.json",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAUwBsAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-13T03:20:10.768Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "footer.component.html",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\footer\\footer.component.html",
+              "RelativeDocumentMoniker": "src\\app\\footer\\footer.component.html",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\footer\\footer.component.html",
+              "RelativeToolTip": "src\\app\\footer\\footer.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-03-14T02:33:47.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "styles.scss",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\styles.scss",
+              "RelativeDocumentMoniker": "src\\styles.scss",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\styles.scss",
+              "RelativeToolTip": "src\\styles.scss",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-03-14T02:30:58.134Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "home.component.scss",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.scss",
+              "RelativeDocumentMoniker": "src\\app\\home\\home.component.scss",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.scss",
+              "RelativeToolTip": "src\\app\\home\\home.component.scss",
+              "ViewState": "AgIAAOwEAAAAAAAAAAAIwAIFAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-03-14T02:47:23.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "signup.component.scss",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.scss",
+              "RelativeDocumentMoniker": "src\\app\\signup\\signup.component.scss",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\signup\\signup.component.scss",
+              "RelativeToolTip": "src\\app\\signup\\signup.component.scss",
+              "ViewState": "AgIAAPYCAAAAAAAAAAAIwA0DAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-03-14T02:54:47.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "contact.component.scss",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.scss",
+              "RelativeDocumentMoniker": "src\\app\\contact\\contact.component.scss",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.scss",
+              "RelativeToolTip": "src\\app\\contact\\contact.component.scss",
+              "ViewState": "AgIAAIoCAAAAAAAAAAAIwJ8CAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-03-13T03:18:31.857Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "footer.component.scss",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\footer\\footer.component.scss",
+              "RelativeDocumentMoniker": "src\\app\\footer\\footer.component.scss",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\footer\\footer.component.scss",
+              "RelativeToolTip": "src\\app\\footer\\footer.component.scss",
+              "ViewState": "AgIAAAUBAAAAAAAAAAAIwBkBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-03-14T02:37:26.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "header.component.scss",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Downloads\\header.component.scss",
+              "RelativeDocumentMoniker": "..\\..\\..\\Downloads\\header.component.scss",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Downloads\\header.component.scss",
+              "RelativeToolTip": "..\\..\\..\\Downloads\\header.component.scss",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-03-14T02:27:43.134Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "header.component.scss",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.scss",
+              "RelativeDocumentMoniker": "src\\app\\header\\header.component.scss",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.scss",
+              "RelativeToolTip": "src\\app\\header\\header.component.scss",
+              "ViewState": "AgIAAGYCAAAAAAAAAAAIwIwCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-03-14T02:19:18.823Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "header.component.ts",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\header\\header.component.ts",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\header\\header.component.ts",
+              "RelativeToolTip": "src\\app\\header\\header.component.ts",
+              "ViewState": "AgIAACgAAAAAAAAAAAAIwE0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-03-14T02:18:05.822Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "app.component.ts",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\app.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\app.component.ts",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\app.component.ts",
+              "RelativeToolTip": "src\\app\\app.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-03-13T03:37:34.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "app.module.ts",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\app.module.ts",
+              "RelativeDocumentMoniker": "src\\app\\app.module.ts",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\app.module.ts",
+              "RelativeToolTip": "src\\app\\app.module.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-03-13T03:37:30.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "home.component.ts",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\home\\home.component.ts",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\home\\home.component.ts",
+              "RelativeToolTip": "src\\app\\home\\home.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-03-13T03:37:25.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "contact.component.ts",
+              "DocumentMoniker": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\contact\\contact.component.ts",
+              "ToolTip": "C:\\Users\\Macbook Pro\\Desktop\\Project\\sms-foundation\\src\\app\\contact\\contact.component.ts",
+              "RelativeToolTip": "src\\app\\contact\\contact.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-03-13T03:18:30.272Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
