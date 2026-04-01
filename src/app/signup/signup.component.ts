@@ -40,9 +40,7 @@ export class SignupComponent implements OnInit {
     return `paytmmp://pay?pa=9594704311.etb@icici&pn=SMS Foundation&am=${amount}&cu=INR&tn=Registration Fee`;
   }
 
-  /*private apiUrl = 'https://vgfurnitureapi.runasp.net/api/Auth/register';*/
-  private apiUrl = 'https://localhost:7200/api/Auth/register';
-  private generateSelfCodeUrl = 'https://localhost:7200/api/Auth/generate-ourcode';
+  private apiUrl = 'https://vgfurnitureapi.runasp.net/api/Auth/register';
 
   constructor(
     private fb: FormBuilder,
@@ -85,7 +83,7 @@ export class SignupComponent implements OnInit {
       email:      ['', [Validators.required, Validators.email]],
       aadhar:     ['', [Validators.required, Validators.pattern(/^[0-9]{12}$/)]],
       pan:        ['', [Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/)]],
-      accountNo:  ['', [Validators.required, Validators.minLength(9), Validators.maxLength(20)]],
+      accountNo:  ['', [Validators.required, Validators.minLength(9), Validators.maxLength(20)]], 
       address:    ['', Validators.required],
 
       // Worker Fields
@@ -103,8 +101,8 @@ export class SignupComponent implements OnInit {
       referenceCode:      ['', Validators.required],
       referenceRankName:  ['', Validators.required],
 
-      // Payment
-      utr:    [''],
+      // Payment - FIXED: Initialize utr with empty string
+      utr:    ['', []],  // Initialize without required validator initially
       amount: [defaultAmount, Validators.required],
 
       // Terms
@@ -341,32 +339,183 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  confirmPayment(): void {
-    const utrControl = this.signupForm.get('utr');
-    utrControl?.setValidators(Validators.required);
-    utrControl?.updateValueAndValidity();
+ // Add this helper method to get the UTR value directly from DOM if needed
+getUtrValue(): string {
+  // Try to get from form control first
+  const utrControl = this.signupForm.get('utr');
+  if (utrControl && utrControl.value) {
+    return utrControl.value;
+  }
+  
+  // Fallback: get from DOM directly
+  const inputElement = document.querySelector('[formControlName="utr"]') as HTMLInputElement;
+  if (inputElement) {
+    return inputElement.value;
+  }
+  
+  return '';
+}
 
-    if (!utrControl?.value?.trim()) {
-      utrControl?.markAsTouched();
-      this.errorMessage = 'Please enter the UTR / Transaction number before confirming.';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      this.cdr.detectChanges();
-      return;
+async confirmPayment(): Promise<void> {
+  // Get UTR value using multiple methods
+  const utrControl = this.signupForm.get('utr');
+  let utrValue = utrControl?.value;
+  
+  // If form control is empty, try to get from DOM
+  if (!utrValue || utrValue.trim() === '') {
+    const inputElement = document.querySelector('[formControlName="utr"]') as HTMLInputElement;
+    if (inputElement && inputElement.value) {
+      utrValue = inputElement.value;
+      // Update the form control with the DOM value
+      utrControl?.setValue(utrValue, { emitEvent: false });
     }
-
-    this.errorMessage = '';
-    this.successMessage = '';
-    this.loading = true;
+  }
+  
+  // Set required validator
+  utrControl?.setValidators(Validators.required);
+  utrControl?.updateValueAndValidity();
+  utrControl?.markAsTouched();
+  
+  this.cdr.detectChanges();
+  
+  // Check if UTR is empty
+  if (!utrValue || utrValue.toString().trim() === '') {
+    console.log('UTR is empty, showing error');
+    this.errorMessage = 'Please enter the UTR / Transaction number before confirming.';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.cdr.detectChanges();
+    return;
+  }
+  
+  // Clear previous messages
+  this.errorMessage = '';
+  this.successMessage = '';
+  this.loading = true;
+  this.cdr.detectChanges();
 
+  try {
+    // Prepare the payload to update UTR
+    const payload = {
+      registrationNumber: this.registrationNumber,
+      utrNumber: utrValue.trim(),
+      amount: this.isWorker ? 1200 : 200
+    };
+
+    // Call your API to update UTR
+    const updateUrl = 'https://vgfurnitureapi.runasp.net/api/Auth/update-utr';
+    
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    
+    const response = await firstValueFrom(
+      this.http.post<any>(updateUrl, payload, { headers })
+    );
+
+    this.loading = false;
+    
+    if (response && response.message) {
+      this.successMessage = response.message;
+      console.log('Payment confirmed:', response);
+      
+      // Update registration number if returned
+      if (response.registrationNumber) {
+        this.registrationNumber = response.registrationNumber;
+      }
+    } else {
+      this.successMessage = `Payment confirmed successfully! Registration No: ${this.registrationNumber}`;
+    }
+    
+    // Switch to done tab after successful payment confirmation
     setTimeout(() => {
-      this.loading = false;
-      this.successMessage = `Payment confirmed! Registration No: ${this.registrationNumber}`;
       this.activeTab = 'done';
       window.scrollTo({ top: 0, behavior: 'smooth' });
       this.cdr.detectChanges();
     }, 1000);
+    
+  } catch (error: any) {
+    this.loading = false;
+    console.error('Payment confirmation error:', error);
+    
+    // Handle different error scenarios based on your backend responses
+    if (error.status === 0) {
+      this.errorMessage = 'Cannot reach the server. Please check your connection.';
+    } else if (error.status === 400) {
+      this.errorMessage = error.error?.error || error.error?.message || 'Invalid UTR number. Please check and try again.';
+    } else if (error.status === 404) {
+      this.errorMessage = error.error?.error || 'Registration not found. Please contact support.';
+    } else if (error.status === 409) {
+      this.errorMessage = error.error?.error || 'Payment already confirmed for this registration.';
+    } else if (error.status === 500) {
+      this.errorMessage = 'Server error. Please try again later.';
+    } else {
+      this.errorMessage = error.error?.error || error.error?.message || 'Payment confirmation failed. Please try again.';
+    }
+    
+    this.cdr.detectChanges();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+}
+
+
+
+
+// confirmPayment(): void {
+//   // Get UTR value using multiple methods
+//   const utrControl = this.signupForm.get('utr');
+//   let utrValue = utrControl?.value;
+  
+//   // If form control is empty, try to get from DOM
+//   if (!utrValue || utrValue.trim() === '') {
+//     const inputElement = document.querySelector('[formControlName="utr"]') as HTMLInputElement;
+//     if (inputElement && inputElement.value) {
+//       utrValue = inputElement.value;
+//       // Update the form control with the DOM value
+//       utrControl?.setValue(utrValue, { emitEvent: false });
+//     }
+//   }
+  
+
+  
+//   // Set required validator
+//   utrControl?.setValidators(Validators.required);
+//   utrControl?.updateValueAndValidity();
+//   utrControl?.markAsTouched();
+  
+//   this.cdr.detectChanges();
+  
+//   // Check if UTR is empty
+//   if (!utrValue || utrValue.toString().trim() === '') {
+//     console.log('UTR is empty, showing error');
+//     this.errorMessage = 'Please enter the UTR / Transaction number before confirming.';
+//     window.scrollTo({ top: 0, behavior: 'smooth' });
+//     this.cdr.detectChanges();
+//     return;
+//   }
+  
+//   // Clear previous messages
+//   this.errorMessage = '';
+//   this.successMessage = '';
+//   this.loading = true;
+//   this.cdr.detectChanges();
+
+//   // Simulate payment confirmation
+//   setTimeout(() => {
+//     this.loading = false;
+//     this.successMessage = `Payment confirmed! Registration No: ${this.registrationNumber}`;
+//     this.activeTab = 'done';
+//     window.scrollTo({ top: 0, behavior: 'smooth' });
+//     this.cdr.detectChanges();
+//   }, 1000);
+// }
+
+// Add this method to update UTR value in real-time
+onUtrInput(event: any): void {
+  const value = event.target.value;
+  const utrControl = this.signupForm.get('utr');
+  if (utrControl) {
+    utrControl.setValue(value, { emitEvent: false });
+    console.log('UTR updated to:', value);
+  }
+}
 
   hasError(field: string, error: string): boolean {
     const control = this.signupForm.get(field);
@@ -436,8 +585,7 @@ export class SignupComponent implements OnInit {
   }
 }
 
-// ── Updated Interfaces ────────────────────────────────────────────────────────────────
-
+// Interfaces
 interface RegisterUserDto {
   userType: string;
   title: string;

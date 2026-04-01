@@ -608,15 +608,16 @@
                     Confirm Payment
                   </h4>
 
-                  <div class="field-group">
+                 <div class="field-group">
                     <label class="field-label">
                       UTR / Transaction Number <span class="req-star">*</span>
                     </label>
                     <div class="input-wrap" [class.error]="isInvalid('utr')">
                       <input type="text"
-                             formControlName="utr"
-                             placeholder="Enter UTR number"
-                             maxlength="22" />
+                            formControlName="utr"
+                            placeholder="Enter UTR number"
+                            maxlength="22"
+                            (input)="onUtrInput($event)" />
                     </div>
                     <span class="field-error" *ngIf="isInvalid('utr')">UTR number is required</span>
                     <span class="field-hint">
@@ -624,6 +625,7 @@
                     </span>
                   </div>
 
+       
                   <div class="field-group">
                     <label class="field-label">Amount Paid <span class="req-star">*</span></label>
                     <div class="input-wrap input-readonly">
