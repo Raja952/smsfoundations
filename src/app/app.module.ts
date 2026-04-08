@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +21,8 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommissionChartComponent } from './commission-chart/commission-chart.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +37,18 @@ import { CommissionChartComponent } from './commission-chart/commission-chart.co
     SignupComponent,
     PrivacyComponent,
     TermsComponent,
-    CommissionChartComponent
+    CommissionChartComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

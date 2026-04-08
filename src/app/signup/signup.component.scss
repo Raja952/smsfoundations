@@ -1187,3 +1187,190 @@ form {
     background: linear-gradient(135deg, #d97706, #b45309) !important;
   }
 }
+
+.input-wrap {
+    position: relative;
+    
+    .loading-spinner {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+
+/* ============================================================
+   FILE: signup.component.scss  — ADDITIONS ONLY
+   Add these rules to your existing stylesheet.
+   ============================================================ */
+
+/* ── Auto-generated badge next to field label ──────────────── */
+.auto-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+/* ── OK checkmark icon inside readonly input ───────────────── */
+.field-ok-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Ensure relative positioning so absolute icon works */
+.input-wrap.input-readonly {
+  position: relative;
+}
+
+/* ── Loading field shimmer ─────────────────────────────────── */
+.input-wrap.loading-field input {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  color: transparent;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Confirmation Number Banner (top of Payment tab) ────────── */
+.confirmation-number-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #1a3c6e 0%, #2563a8 100%);
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(26, 60, 110, 0.25);
+}
+
+.conf-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.conf-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.conf-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.conf-number {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffd54f;
+}
+
+.conf-hint {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-top: 2px;
+}
+
+/* ── Confirmation number reminder inside the UTR form ─────── */
+.conf-reminder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f4f6fa;
+  border: 1px solid #e0e7ef;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+
+.conf-reminder-label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.conf-reminder-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a3c6e;
+  letter-spacing: 0.5px;
+}
+
+/* ── Email notice above the Confirm button ─────────────────── */
+.email-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-left: 4px solid #4caf50;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: #2e7d32;
+  line-height: 1.5;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+    stroke: #2e7d32;
+  }
+}
+
+/* ── Done tab email note ────────────────────────────────────── */
+.done-email-note {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px auto 0;
+  font-size: 14px;
+  color: #1565c0;
+  max-width: 380px;
+  text-align: center;
+}
+
+/* ── Responsive adjustments ─────────────────────────────────── */
+@media (max-width: 480px) {
+  .confirmation-number-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .conf-number {
+    font-size: 20px;
+  }
+}

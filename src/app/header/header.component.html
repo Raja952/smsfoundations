@@ -1,43 +1,65 @@
 <header class="site-header" [class.scrolled]="isScrolled" [class.hidden]="!isHeaderVisible">
 
-  <!-- Top Bar -->
+  <!-- ═══════ TOP BAR ═══════ -->
   <div class="topbar">
     <div class="container">
       <div class="topbar-inner">
         <div class="topbar-contacts">
-          <a href="tel:+919336228931" class="topbar-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 11.5 19.79 19.79 0 01.88 2.86 2 2 0 012.86.67h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+          <a href="tel:+912231652132" class="topbar-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 11.5 19.79 19.79 0 01.88 2.86 2 2 0 012.86.67h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
             </svg>
-            <span class="contact-text"> Customer Care No. 022 35635478</span>
+            <span class="contact-text">Customer Care: 022 31652132</span>
           </a>
           <span class="topbar-divider"></span>
           <a href="mailto:info@smsfoundation.org" class="topbar-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
             </svg>
             <span class="contact-text">info@smsfoundation.org</span>
           </a>
-          <a href="https://maps.google.com/?q=Gopal Sadan Building Andheri East Mumbai"
-             target="_blank"
-             class="topbar-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
+          <span class="topbar-divider topbar-divider--lg"></span>
+          <a href="https://maps.google.com/?q=Gopal+Sadan+Building+Andheri+East+Mumbai"
+             target="_blank" class="topbar-link topbar-link--lg">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
             </svg>
-            <span class="contact-text">Shop no.1 Gopal Sadan Building, Near Sani Mandir ,Jija Mata Road, Pump House, Andheri East,Mumbai – 400093</span>
+            <span class="contact-text">Shop no.1, Gopal Sadan, Near Sani Mandir, Andheri East, Mumbai – 400093</span>
+          </a>
+        </div>
+
+        <!-- Social icons (desktop only) -->
+        <div class="topbar-social">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="YouTube">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+            </svg>
           </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Main Navbar -->
-  <nav class="navbar">
+  <!-- ═══════ MAIN NAVBAR ═══════ -->
+  <nav class="navbar" role="navigation">
     <div class="container">
       <div class="navbar-inner">
-        
+
         <!-- Logo -->
         <a class="navbar-brand" routerLink="/">
           <div class="brand-logo">
@@ -50,7 +72,7 @@
         </a>
 
         <!-- Desktop Nav Links -->
-        <ul class="nav-links">
+        <ul class="nav-links" role="list">
           <li class="nav-item">
             <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
           </li>
@@ -63,8 +85,8 @@
           <li class="nav-item nav-dropdown" [class.open]="isDropdownOpen" (clickOutside)="closeDropdown()">
             <button class="nav-link dropdown-trigger" (click)="toggleDropdown($event)">
               Products
-              <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="6 9 12 15 18 9"></polyline>
+              <svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"/>
               </svg>
             </button>
             <div class="dropdown-panel" [class.show]="isDropdownOpen">
@@ -98,154 +120,353 @@
             <a class="nav-link" routerLink="/contact" routerLinkActive="active">Our Team</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/commission" routerLinkActive="active">Commission Chart</a>
+            <a class="nav-link" routerLink="/commission" routerLinkActive="active">Commission</a>
           </li>
         </ul>
 
-        <!-- Right Side - CTA + Hamburger -->
+        <!-- Right Side -->
         <div class="navbar-right">
-          <!-- Sign Up Dropdown (Desktop) -->
-          <div class="signup-dropdown" 
-               (mouseenter)="isSignupOpen = true" 
-               (mouseleave)="isSignupOpen = false">
-            <button class="btn-cta" (click)="toggleSignupDropdown($event)">
-              Sign Up
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </button>
-            <div class="signup-dropdown-menu" [class.show]="isSignupOpen">
-              <a routerLink="/signup/member" class="signup-option" (click)="isSignupOpen = false; closeMenu()">
-                <span class="signup-icon">👤</span>
-                <span class="signup-content">
-                  <strong>Member</strong>
-                  <small>Join as a community member</small>
-                </span>
-              </a>
-              <a routerLink="/signup/worker" class="signup-option" (click)="isSignupOpen = false; closeMenu()">
-                <span class="signup-icon">🛠️</span>
-                <span class="signup-content">
-                  <strong>Worker</strong>
-                  <small>Join as a field worker</small>
-                </span>
-              </a>
+
+          <!-- GUEST: Sign Up + Login -->
+          <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+
+            <div class="signup-dropdown"
+                 (mouseenter)="isSignupOpen = true"
+                 (mouseleave)="isSignupOpen = false">
+              <button class="btn-cta" (click)="toggleSignupDropdown($event)">
+                Sign Up
+                <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+              <div class="signup-dropdown-menu" [class.show]="isSignupOpen">
+                <a routerLink="/signup/member" class="signup-option" (click)="isSignupOpen = false; closeMenu()">
+                  <span class="signup-icon">👤</span>
+                  <span class="signup-content">
+                    <strong>Member</strong>
+                    <small>Join as a community member</small>
+                  </span>
+                </a>
+                <a routerLink="/signup/worker" class="signup-option" (click)="isSignupOpen = false; closeMenu()">
+                  <span class="signup-icon">🛠️</span>
+                  <span class="signup-content">
+                    <strong>Worker</strong>
+                    <small>Join as a field worker</small>
+                  </span>
+                </a>
+              </div>
             </div>
-          </div>
+
+            <a routerLink="/login" class="btn-login">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/>
+                <polyline points="10 17 15 12 10 7"/>
+                <line x1="15" y1="12" x2="3" y2="12"/>
+              </svg>
+              Login
+            </a>
+          </ng-container>
+
+          <!-- LOGGED IN: User dropdown -->
+          <ng-template #loggedInTemplate>
+            <div class="user-dropdown"
+                 (mouseenter)="isUserDropdownOpen = true"
+                 (mouseleave)="isUserDropdownOpen = false">
+              <button class="btn-user" (click)="toggleUserDropdown($event)">
+                <span class="user-avatar">{{ userInitial }}</span>
+                <span class="user-name">{{ userName }}</span>
+                <svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+              <div class="user-dropdown-menu" [class.show]="isUserDropdownOpen">
+                <!-- User info header -->
+                <div class="user-menu-header">
+                  <div class="umh-avatar">{{ userInitial }}</div>
+                  <div class="umh-info">
+                    <strong>{{ userName }}</strong>
+                    <span class="umh-role"
+                          [class.role-admin]="isAdmin"
+                          [class.role-member]="isMember"
+                          [class.role-worker]="isWorker">
+                      {{ userRole }}
+                    </span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="user-option" (click)="goToProfile()">
+                  <span class="user-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </span>
+                  <span class="user-content">
+                    <strong>My Profile</strong>
+                    <small>View your account</small>
+                  </span>
+                </a>
+                <a class="user-option" (click)="goToDashboard()">
+                  <span class="user-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                      <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+                    </svg>
+                  </span>
+                  <span class="user-content">
+                    <strong>Dashboard</strong>
+                    <small>{{ isAdmin ? 'Admin panel' : 'My activity' }}</small>
+                  </span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="user-option logout-option" (click)="logout($event)">
+                  <span class="user-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                      <polyline points="16 17 21 12 16 7"/>
+                      <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                  </span>
+                  <span class="user-content">
+                    <strong>Logout</strong>
+                    <small>Sign out of account</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </ng-template>
 
           <!-- Hamburger -->
-          <button class="hamburger-btn" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle menu">
+          <button class="hamburger-btn" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle menu" [attr.aria-expanded]="isMenuOpen">
             <span></span>
             <span></span>
             <span></span>
           </button>
+
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
-  <div class="mobile-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
+  <!-- ═══════ MOBILE OVERLAY ═══════ -->
+  <div class="mobile-overlay" [class.active]="isMenuOpen" (click)="closeMenu()" aria-hidden="true"></div>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-drawer" [class.open]="isMenuOpen">
+  <!-- ═══════ MOBILE DRAWER ═══════ -->
+  <div class="mobile-drawer" [class.open]="isMenuOpen" role="dialog" aria-label="Navigation menu">
+
     <div class="drawer-header">
       <div class="brand-text">
         <span class="brand-name">SMS <strong>Foundation</strong></span>
         <span class="brand-tagline">Empowering Communities</span>
       </div>
-      <button class="drawer-close" (click)="closeMenu()">
+      <button class="drawer-close" (click)="closeMenu()" aria-label="Close menu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
+    </div>
+
+    <!-- Logged-in user card in drawer -->
+    <div class="drawer-user-card" *ngIf="isLoggedIn">
+      <div class="duc-avatar">{{ userInitial }}</div>
+      <div class="duc-info">
+        <strong>{{ userName }}</strong>
+        <span class="duc-role"
+              [class.role-admin]="isAdmin"
+              [class.role-member]="isMember"
+              [class.role-worker]="isWorker">
+          {{ userRole }}
+        </span>
+      </div>
     </div>
 
     <ul class="drawer-nav">
       <li>
         <a class="drawer-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">
+          <span class="dl-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </span>
           <span>Home</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6"></polyline>
+          <svg class="dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
           </svg>
         </a>
       </li>
       <li>
         <a class="drawer-link" routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+          <span class="dl-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </span>
           <span>About Us</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6"></polyline>
+          <svg class="dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
           </svg>
         </a>
       </li>
       <li>
         <a class="drawer-link" routerLink="/gallery" routerLinkActive="active" (click)="closeMenu()">
+          <span class="dl-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </span>
           <span>Gallery</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6"></polyline>
+          <svg class="dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
           </svg>
         </a>
       </li>
-      
-      <!-- Products Accordion in Mobile -->
+
+      <!-- Products Accordion -->
       <li class="drawer-accordion" [class.open]="isMobileProductsOpen">
         <button class="drawer-link accordion-trigger" (click)="toggleMobileProducts($event)">
+          <span class="dl-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </span>
           <span>Products</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 12 15 18 9"></polyline>
+          <svg class="chevron dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
           </svg>
         </button>
         <div class="accordion-body">
-          <a class="drawer-sub-link" routerLink="/products" (click)="closeMenu()">🌸 Sanitary Pads</a>
+          <a class="drawer-sub-link" routerLink="/products"       (click)="closeMenu()">🌸 Sanitary Pads</a>
           <a class="drawer-sub-link" routerLink="/products/anion" (click)="closeMenu()">⚡ Anion Technology</a>
-          <a class="drawer-sub-link" routerLink="/products/new" (click)="closeMenu()">✨ New Arrivals</a>
+          <a class="drawer-sub-link" routerLink="/products/new"   (click)="closeMenu()">✨ New Arrivals</a>
         </div>
       </li>
-      
+
       <li>
         <a class="drawer-link" routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+          <span class="dl-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </span>
           <span>Our Team</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6"></polyline>
+          <svg class="dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
           </svg>
         </a>
       </li>
-      
       <li>
         <a class="drawer-link" routerLink="/commission" routerLinkActive="active" (click)="closeMenu()">
+          <span class="dl-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+          </span>
           <span>Commission Chart</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6"></polyline>
+          <svg class="dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
           </svg>
         </a>
       </li>
-      
-      <!-- Mobile Signup Options -->
-      <li class="drawer-divider">
-        <hr>
-      </li>
-      
-      <li>
-        <a class="drawer-link" routerLink="/signup/member" (click)="closeMenu()">
-          <span>👤 Member Signup</span>
-        </a>
-      </li>
-      
-      <li>
-        <a class="drawer-link" routerLink="/signup/worker" (click)="closeMenu()">
-          <span>🛠️ Worker Signup</span>
-        </a>
-      </li>
+
+      <li class="drawer-divider"><hr></li>
+
+      <!-- GUEST actions -->
+      <ng-container *ngIf="!isLoggedIn; else mobileLoggedInTemplate">
+        <li>
+          <a class="drawer-link" routerLink="/login" (click)="closeMenu()">
+            <span class="dl-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/>
+                <polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
+              </svg>
+            </span>
+            <span>🔐 Login</span>
+          </a>
+        </li>
+        <li>
+          <a class="drawer-link drawer-link--accent" routerLink="/signup/member" (click)="closeMenu()">
+            <span class="dl-icon">👤</span>
+            <span>Member Signup</span>
+          </a>
+        </li>
+        <li>
+          <a class="drawer-link drawer-link--accent" routerLink="/signup/worker" (click)="closeMenu()">
+            <span class="dl-icon">🛠️</span>
+            <span>Worker Signup</span>
+          </a>
+        </li>
+      </ng-container>
+
+      <!-- LOGGED IN actions -->
+      <ng-template #mobileLoggedInTemplate>
+        <li>
+          <a class="drawer-link" (click)="goToProfile(); closeMenu()">
+            <span class="dl-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            <span>👤 My Profile</span>
+            <svg class="dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a class="drawer-link" (click)="goToDashboard(); closeMenu()">
+            <span class="dl-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+              </svg>
+            </span>
+            <span>📊 Dashboard</span>
+            <svg class="dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a class="drawer-link logout-link" (click)="logout($event); closeMenu()">
+            <span class="dl-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+            </span>
+            <span>🚪 Logout</span>
+            <svg class="dl-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </li>
+      </ng-template>
     </ul>
 
     <div class="drawer-footer">
       <div class="drawer-contacts">
-        <a href="tel:+919336228931">Customer Care No. 022 35635478</a>
-        <a href="mailto:info@smsfoundation.org">✉️ info@smsfoundation.org</a>
-        <a href="https://maps.google.com/?q=Gopal Sadan Building Andheri East Mumbai" target="_blank">
-          📍 Gopal Sadan Building, Andheri East, Mumbai
+        <a href="tel:+912231652132">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 11.5 19.79 19.79 0 01.88 2.86 2 2 0 012.86.67h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          022 31652132
+        </a>
+        <a href="mailto:info@smsfoundation.org">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          info@smsfoundation.org
+        </a>
+        <a href="https://maps.google.com/?q=Gopal+Sadan+Andheri+East+Mumbai" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          Andheri East, Mumbai 400093
         </a>
       </div>
     </div>
-  </div>
+
+  </div><!-- /mobile-drawer -->
+
 </header>

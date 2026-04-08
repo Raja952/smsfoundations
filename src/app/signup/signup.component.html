@@ -104,13 +104,14 @@
             <button class="alert-close" (click)="errorMessage = ''">×</button>
           </div>
 
-          <!-- ✅ Guard: only render form card once signupForm is ready -->
           <div class="form-card" *ngIf="signupForm">
 
             <!-- ══════════════════════════════
                  TAB NAVIGATION
             ══════════════════════════════ -->
             <div class="form-tabs">
+
+              <!-- Tab 1: Registration — always accessible -->
               <button
                 class="form-tab"
                 [class.active]="activeTab === 'registration'"
@@ -124,27 +125,29 @@
                 Registration
               </button>
 
+              <!-- Tab 2: Payment — unlocked only after confirmationNumber is set -->
               <button
                 class="form-tab"
                 [class.active]="activeTab === 'payment'"
-                [class.tab-locked]="!registrationNumber"
+                [class.tab-locked]="!confirmationNumber"
                 (click)="switchTab('payment')"
                 type="button"
-                [disabled]="!registrationNumber">
+                [disabled]="!confirmationNumber">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2">
                   <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
                   <line x1="1" y1="10" x2="23" y2="10"/>
                 </svg>
                 Payment
-                <span class="tab-lock-icon" *ngIf="!registrationNumber">🔒</span>
-                <span class="tab-done-icon" *ngIf="registrationNumber">✅</span>
+                <span class="tab-lock-icon" *ngIf="!confirmationNumber">🔒</span>
+                <span class="tab-done-icon" *ngIf="confirmationNumber">✅</span>
               </button>
 
+              <!-- Tab 3: Done — always disabled (auto-navigated) -->
               <button
                 class="form-tab"
                 [class.active]="activeTab === 'done'"
-                [class.tab-locked]="!registrationNumber"
+                [class.tab-locked]="!confirmationNumber"
                 type="button"
                 disabled>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -152,8 +155,9 @@
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
                 Done
-                <span class="tab-lock-icon" *ngIf="!registrationNumber">🔒</span>
+                <span class="tab-lock-icon" *ngIf="!confirmationNumber">🔒</span>
               </button>
+
             </div>
 
 
@@ -194,30 +198,35 @@
 
                 <div class="form-grid">
 
-                  <!-- Title field -->
-                <div class="field-group">
-                  <label class="field-label">Title <span class="req-star">*</span></label>
-                  <div class="input-wrap select-wrap" [class.error]="isInvalid('title')">
-                    <select formControlName="title">
-                      <option value="">Select Title</option>
-                      <option value="Mr">Mr.</option>
-                      <option value="Miss">Miss/Mrs.</option>
-                    </select>
+                  <!-- Title -->
+                  <div class="field-group">
+                    <label class="field-label">Title <span class="req-star">*</span></label>
+                    <div class="input-wrap select-wrap" [class.error]="isInvalid('title')">
+                      <select formControlName="title">
+                        <option value="">Select Title</option>
+                        <option value="Mr">Mr.</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Mrs">Mrs</option>
+                      </select>
+                      <svg class="select-chevron" width="14" height="14" viewBox="0 0 24 24"
+                           fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </div>
+                    <span class="field-error" *ngIf="isInvalid('title')">Please select a title</span>
                   </div>
-                  <span class="field-error" *ngIf="isInvalid('title')">Please select a title</span>
-                </div>
 
-      
+                  <!-- Full Name -->
                   <div class="field-group">
                     <label class="field-label">Full Name <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('fullName')">
                       <input type="text" formControlName="fullName" placeholder="Enter full name">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('fullName')">Full name is required</span>
-                  </div>    
+                  </div>
 
-                  <!-- Father Name - visible only for Mr -->
-                  <div class="field-group" *ngIf="selectedTitle === 'Mr'">
+                  <!-- Father Name — visible for Mr / Miss -->
+                  <div class="field-group" *ngIf="selectedTitle === 'Mr' || selectedTitle === 'Miss'">
                     <label class="field-label">Father Name <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('fatherName')">
                       <input type="text" formControlName="fatherName" placeholder="Enter father name">
@@ -225,15 +234,51 @@
                     <span class="field-error" *ngIf="isInvalid('fatherName')">Father name is required</span>
                   </div>
 
-                  <!-- Husband Name - visible only for Miss -->
-                  <div class="field-group" *ngIf="selectedTitle === 'Miss'">
+                  <!-- Husband Name — visible for Mrs -->
+                  <div class="field-group" *ngIf="selectedTitle === 'Mrs'">
                     <label class="field-label">Husband Name <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('husbandName')">
                       <input type="text" formControlName="husbandName" placeholder="Enter husband name">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('husbandName')">Husband name is required</span>
                   </div>
-         
+
+                  <!-- Nominee (person's name) -->
+                  <div class="field-group">
+                    <label class="field-label">Nominee <span class="req-star">*</span></label>
+                    <div class="input-wrap" [class.error]="isInvalid('relation')">
+                      <input type="text"
+                             formControlName="relation"
+                             placeholder="Enter nominee name (e.g., Ramesh Kumar)"
+                             maxlength="50">
+                    </div>
+                    <span class="field-error" *ngIf="isInvalid('relation')">Nominee name is required</span>
+                  </div>
+
+                  <!-- Relation (dropdown) -->
+                  <div class="field-group">
+                    <label class="field-label">Relation <span class="req-star">*</span></label>
+                    <div class="input-wrap select-wrap" [class.error]="isInvalid('nominee')">
+                      <select formControlName="nominee">
+                        <option value="">Select Relation</option>
+                        <option value="Father">Father</option>
+                        <option value="Mother">Mother</option>
+                        <option value="Husband">Husband</option>
+                        <option value="Wife">Wife</option>
+                        <option value="Son">Son</option>
+                        <option value="Daughter">Daughter</option>
+                        <option value="Brother">Brother</option>
+                        <option value="Sister">Sister</option>
+                      </select>
+                      <svg class="select-chevron" width="14" height="14" viewBox="0 0 24 24"
+                           fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </div>
+                    <span class="field-error" *ngIf="isInvalid('nominee')">Please select relation</span>
+                  </div>
+
+                  <!-- Date of Birth -->
                   <div class="field-group">
                     <label class="field-label">Date of Birth <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('dob')">
@@ -242,61 +287,72 @@
                     <span class="field-error" *ngIf="isInvalid('dob')">Date of birth is required</span>
                   </div>
 
+                  <!-- Mobile Number -->
                   <div class="field-group">
                     <label class="field-label">Mobile Number <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('mobile')">
-                      <input type="tel" formControlName="mobile" placeholder="Enter mobile number" maxlength="10">
+                      <input type="tel" formControlName="mobile"
+                             placeholder="Enter 10-digit mobile number" maxlength="10">
                     </div>
-                    <span class="field-error" *ngIf="isInvalid('mobile')">Mobile number is required</span>
+                    <span class="field-error" *ngIf="isInvalid('mobile')">Valid 10-digit mobile number is required</span>
                   </div>
 
+                  <!-- Email -->
                   <div class="field-group">
                     <label class="field-label">Email ID <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('email')">
                       <input type="email" formControlName="email" placeholder="Enter email address">
                     </div>
-                    <span class="field-error" *ngIf="isInvalid('email')">Valid email is required</span>
+                    <span class="field-error" *ngIf="isInvalid('email')">Valid email address is required</span>
                   </div>
 
+                  <!-- Aadhaar -->
                   <div class="field-group">
                     <label class="field-label">Aadhaar Number <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('aadhar')">
                       <input type="text" formControlName="aadhar" maxlength="12"
-                             placeholder="12 digit Aadhaar number">
+                             placeholder="12-digit Aadhaar number">
                     </div>
-                    <span class="field-error" *ngIf="isInvalid('aadhar')">Aadhaar number is required</span>
+                    <span class="field-error" *ngIf="isInvalid('aadhar')">Valid 12-digit Aadhaar is required</span>
                   </div>
 
+                  <!-- PAN -->
                   <div class="field-group">
                     <label class="field-label">PAN Number</label>
                     <div class="input-wrap" [class.error]="isInvalid('pan')">
-                      <input type="text" formControlName="pan" 
-                             placeholder="Enter PAN number (e.g., ABCDE1234F)"
+                      <input type="text" formControlName="pan"
+                             placeholder="e.g., ABCDE1234F"
                              (input)="toUpperCase('pan')">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('pan')">Invalid PAN format</span>
                   </div>
 
+                  <!-- Account Number -->
                   <div class="field-group">
                     <label class="field-label">Account Number <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('accountNo')">
-                      <input type="text" formControlName="accountNo" placeholder="Enter bank account number">
+                      <input type="text" formControlName="accountNo"
+                             placeholder="Enter bank account number">
                     </div>
-                    <span class="field-error" *ngIf="isInvalid('accountNo')">Account number is required (9-20 digits)</span>
+                    <span class="field-error" *ngIf="isInvalid('accountNo')">Account number is required (9–20 digits)</span>
                   </div>
 
+                  <!-- Address -->
                   <div class="field-group full-width">
                     <label class="field-label">Address <span class="req-star">*</span></label>
                     <div class="input-wrap textarea-wrap" [class.error]="isInvalid('address')">
-                      <textarea formControlName="address" rows="3" placeholder="Enter complete address"></textarea>
+                      <textarea formControlName="address" rows="3"
+                                placeholder="Enter complete address"></textarea>
                     </div>
                     <span class="field-error" *ngIf="isInvalid('address')">Address is required</span>
                   </div>
 
-                </div>
+                </div><!-- /form-grid personal -->
 
 
-                <!-- 02: Worker-only Work Details -->
+                <!-- ════════════════════════════════
+                     02: Worker-only Work Details
+                ════════════════════════════════ -->
                 <ng-container *ngIf="isWorker">
                   <div class="form-section-label">
                     <span>02</span> Work Details
@@ -304,6 +360,7 @@
 
                   <div class="form-grid">
 
+                    <!-- Skill -->
                     <div class="field-group">
                       <label class="field-label">Skill / Profession <span class="req-star">*</span></label>
                       <div class="input-wrap select-wrap" [class.error]="isInvalid('skill')">
@@ -323,14 +380,17 @@
                       <span class="field-error" *ngIf="isInvalid('skill')">Please select a skill</span>
                     </div>
 
+                    <!-- Work Area -->
                     <div class="field-group">
                       <label class="field-label">Work Area / Zone <span class="req-star">*</span></label>
                       <div class="input-wrap" [class.error]="isInvalid('workArea')">
-                        <input type="text" formControlName="workArea" placeholder="e.g. Andheri, Mumbai">
+                        <input type="text" formControlName="workArea"
+                               placeholder="e.g. Andheri, Mumbai">
                       </div>
                       <span class="field-error" *ngIf="isInvalid('workArea')">Work area is required</span>
                     </div>
 
+                    <!-- Experience -->
                     <div class="field-group">
                       <label class="field-label">Experience <span class="req-star">*</span></label>
                       <div class="input-wrap select-wrap" [class.error]="isInvalid('experience')">
@@ -349,6 +409,7 @@
                       <span class="field-error" *ngIf="isInvalid('experience')">Please select experience</span>
                     </div>
 
+                    <!-- Availability -->
                     <div class="field-group">
                       <label class="field-label">Availability <span class="req-star">*</span></label>
                       <div class="input-wrap select-wrap" [class.error]="isInvalid('availability')">
@@ -366,63 +427,136 @@
                       <span class="field-error" *ngIf="isInvalid('availability')">Please select availability</span>
                     </div>
 
-                  </div>
+                  </div><!-- /form-grid work -->
                 </ng-container>
 
 
-                <!-- Code Information -->
+                <!-- ════════════════════════════════
+                     Code Information
+                     Member: section 02 | Worker: section 03
+                ════════════════════════════════ -->
                 <div class="form-section-label">
                   <span>{{ isWorker ? '03' : '02' }}</span> Code Information
                 </div>
 
                 <div class="form-grid">
 
+                  <!-- ── WORKER code fields ── -->
 
-                  <!-- Self Code -->
-                  <div class="field-group">
-                      <label class="field-label">Self Code <span class="req-star">*</span></label>
-                      <div class="input-wrap" [class.error]="isInvalid('selfCode')">
-                          <input type="text" formControlName="selfCode" placeholder="Enter self code">
-                      </div>
-                      <span class="field-error" *ngIf="isInvalid('selfCode')">Self code is required</span>
+                  <!-- Self Code (Worker) — AUTO-GENERATED on page load, readonly -->
+                  <div class="field-group" *ngIf="isWorker">
+                    <label class="field-label">
+                      Self Code <span class="req-star">*</span>
+                      <span class="auto-badge">Auto</span>
+                    </label>
+                    <div class="input-wrap input-readonly" [class.loading-field]="selfCodeLoading">
+                      <input type="text"
+                             formControlName="selfCode"
+                             placeholder="Generating..."
+                             readonly>
+                      <div *ngIf="selfCodeLoading" class="loading-spinner"></div>
+                      <svg *ngIf="!selfCodeLoading && generatedSelfCode"
+                           class="field-ok-icon" width="16" height="16" viewBox="0 0 24 24"
+                           fill="none" stroke="#2e7d32" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <small class="text-muted" *ngIf="!selfCodeLoading && generatedSelfCode">
+                      Auto-generated worker code
+                    </small>
+                    <small class="text-muted" *ngIf="selfCodeLoading">Generating worker code...</small>
+                    <span class="field-error" *ngIf="isInvalid('selfCode')">Self code is required</span>
                   </div>
 
-                  <!-- Self Rank Name -->
-                  <div class="field-group">
-                      <label class="field-label">Self Rank Name <span class="req-star">*</span></label>
-                      <div class="input-wrap" [class.error]="isInvalid('selfRankName')">
-                          <input type="text" formControlName="selfRankName" placeholder="Enter self rank name">
-                      </div>
-                      <span class="field-error" *ngIf="isInvalid('selfRankName')">Self rank name is required</span>
+                  <!-- Self Rank Name (Worker) -->
+                  <div class="field-group" *ngIf="isWorker">
+                    <label class="field-label">Self Rank Name <span class="req-star">*</span></label>
+                    <div class="input-wrap" [class.error]="isInvalid('selfRankName')">
+                      <input type="text" formControlName="selfRankName"
+                             placeholder="Enter self rank name">
+                    </div>
+                    <span class="field-error" *ngIf="isInvalid('selfRankName')">Self rank name is required</span>
                   </div>
 
-                  <!-- Reference Code -->
-                  <div class="field-group">
-                      <label class="field-label">Reference Code <span class="req-star">*</span></label>
-                      <div class="input-wrap" [class.error]="isInvalid('referenceCode')">
-                          <input type="text" formControlName="referenceCode" placeholder="Enter reference code">
-                      </div>
-                      <span class="field-error" *ngIf="isInvalid('referenceCode')">Reference code is required</span>
+                  <!-- Reference Code (Worker) -->
+                  <div class="field-group" *ngIf="isWorker">
+                    <label class="field-label">Reference Code <span class="req-star">*</span></label>
+                    <div class="input-wrap" [class.error]="isInvalid('referenceCode')">
+                      <input type="text" formControlName="referenceCode"
+                             placeholder="Enter reference code">
+                    </div>
+                    <span class="field-error" *ngIf="isInvalid('referenceCode')">Reference code is required</span>
                   </div>
 
-                  <!-- Reference Rank Name -->
-                  <div class="field-group">
-                      <label class="field-label">Reference Rank Name <span class="req-star">*</span></label>
-                      <div class="input-wrap" [class.error]="isInvalid('referenceRankName')">
-                          <input type="text" formControlName="referenceRankName" placeholder="Enter reference rank name">
-                      </div>
-                      <span class="field-error" *ngIf="isInvalid('referenceRankName')">Reference rank name is required</span>
+                  <!-- Reference Rank Name (Worker) -->
+                  <div class="field-group" *ngIf="isWorker">
+                    <label class="field-label">Reference Rank Name <span class="req-star">*</span></label>
+                    <div class="input-wrap" [class.error]="isInvalid('referenceRankName')">
+                      <input type="text" formControlName="referenceRankName"
+                             placeholder="Enter reference rank name">
+                    </div>
+                    <span class="field-error" *ngIf="isInvalid('referenceRankName')">Reference rank name is required</span>
                   </div>
-                                <!-- Designation (Member only) -->
+
+
+                  <!-- ── MEMBER code fields ── -->
+
+                  <!-- Registration No. (Member) — AUTO-GENERATED on page load, readonly -->
+                  <div class="field-group" *ngIf="!isWorker">
+                    <label class="field-label">
+                      Registration No. <span class="req-star">*</span>
+                      <span class="auto-badge">Auto</span>
+                    </label>
+                    <div class="input-wrap input-readonly" [class.loading-field]="registrationNoLoading">
+                      <input type="text"
+                             formControlName="registrationNo"
+                             placeholder="Generating..."
+                             readonly>
+                      <div *ngIf="registrationNoLoading" class="loading-spinner"></div>
+                      <svg *ngIf="!registrationNoLoading && registrationNumber"
+                           class="field-ok-icon" width="16" height="16" viewBox="0 0 24 24"
+                           fill="none" stroke="#2e7d32" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <small class="text-muted" *ngIf="!registrationNoLoading && registrationNumber">
+                      Auto-generated — a separate Confirmation Number will appear on the Payment tab after you register
+                    </small>
+                    <small class="text-muted" *ngIf="registrationNoLoading">Generating registration number...</small>
+                    <span class="field-error" *ngIf="isInvalid('registrationNo')">Registration No. is required</span>
+                  </div>
+
+                  <!-- Designation (Member) -->
                   <div class="field-group" *ngIf="!isWorker">
                     <label class="field-label">Designation <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('designation')">
-                      <input type="text" formControlName="designation" placeholder="Enter designation">
+                      <input type="text" formControlName="designation"
+                             placeholder="Enter designation">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('designation')">Designation is required</span>
                   </div>
 
-                  <!-- Registration Fee -->
+                  <!-- Reference Code (Member) -->
+                  <div class="field-group" *ngIf="!isWorker">
+                    <label class="field-label">Reference Code <span class="req-star">*</span></label>
+                    <div class="input-wrap" [class.error]="isInvalid('referenceCode')">
+                      <input type="text" formControlName="referenceCode"
+                             placeholder="Enter reference code">
+                    </div>
+                    <span class="field-error" *ngIf="isInvalid('referenceCode')">Reference code is required</span>
+                  </div>
+
+                  <!-- Reference Name (Member) -->
+                  <div class="field-group" *ngIf="!isWorker">
+                    <label class="field-label">Reference Name <span class="req-star">*</span></label>
+                    <div class="input-wrap" [class.error]="isInvalid('referenceName')">
+                      <input type="text" formControlName="referenceName"
+                             placeholder="Enter reference name">
+                    </div>
+                    <span class="field-error" *ngIf="isInvalid('referenceName')">Reference name is required</span>
+                  </div>
+
+                  <!-- Registration Fee (both) -->
                   <div class="field-group">
                     <label class="field-label">Registration Fee <span class="req-star">*</span></label>
                     <div class="input-wrap select-wrap" [class.error]="isInvalid('amount')">
@@ -439,10 +573,10 @@
                     <span class="field-error" *ngIf="isInvalid('amount')">Please select amount</span>
                   </div>
 
-                </div>
+                </div><!-- /form-grid code -->
 
 
-                <!-- Terms -->
+                <!-- Terms & Conditions -->
                 <div class="terms-row">
                   <label class="checkbox-label" [class.error]="isInvalid('terms')">
                     <input type="checkbox" formControlName="terms" id="termsCheck">
@@ -458,7 +592,7 @@
                   <span class="field-error" *ngIf="isInvalid('terms')">You must accept the terms</span>
                 </div>
 
-                <!-- Submit -->
+                <!-- Submit Button -->
                 <div class="submit-section">
                   <button type="submit" class="btn-submit"
                           [class.worker-submit]="isWorker"
@@ -496,6 +630,9 @@
 
             <!-- ══════════════════════════════
                  TAB 2 — PAYMENT
+                 confirmationNumber (CONF-202504-0001) is shown here.
+                 It is generated AFTER Register is clicked — different
+                 series from registrationNumber (SMS-202504-0001).
             ══════════════════════════════ -->
             <div *ngIf="activeTab === 'payment'" class="payment-tab">
 
@@ -522,11 +659,25 @@
                 </div>
               </div>
 
-              <!-- Registration Summary Banner -->
+              <!-- ── Confirmation Number Banner ─────────────────────────────
+                   Shows CONF-202504-0001 (different from SMS-202504-0001)
+              ──────────────────────────────────────────────────────────── -->
+              <div class="confirmation-number-banner">
+                <div class="conf-icon">🔖</div>
+                <div class="conf-details">
+                  <span class="conf-label">Your Confirmation Number</span>
+                  <strong class="conf-number">{{ confirmationNumber }}</strong>
+                  <small class="conf-hint">
+                    Keep this safe — quote it for any payment queries
+                  </small>
+                </div>
+              </div>
+
+              <!-- Summary strip -->
               <div class="reg-summary-banner">
                 <div class="reg-summary-item">
-                  <span class="reg-label">Registration No.</span>
-                  <span class="reg-value">{{ registrationNumber || '—' }}</span>
+                  <span class="reg-label">Confirmation No.</span>
+                  <span class="reg-value">{{ confirmationNumber || '—' }}</span>
                 </div>
                 <div class="reg-summary-divider"></div>
                 <div class="reg-summary-item">
@@ -543,6 +694,7 @@
               <!-- Payment Body -->
               <div class="payment-body">
 
+                <!-- QR / UPI section -->
                 <div class="payment-qr-section">
                   <h4 class="payment-sub-title">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -557,10 +709,10 @@
 
                   <div class="qr-box">
                     <a [href]="upiLink" class="qr-link" (click)="onQrClick($event)">
-                      <img src="assets/Images/payment-qr.jpeg" alt="Payment QR Code" class="qr-image" />
+                      <img src="assets/Images/payment.jpeg" alt="Payment QR Code" class="qr-image"/>
                       <div class="qr-tap-overlay">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
+                             stroke="currentColor" stroke-width="2">
                           <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
                           <line x1="12" y1="18" x2="12.01" y2="18"/>
                         </svg>
@@ -568,7 +720,7 @@
                       </div>
                     </a>
 
-                    <p class="qr-upi-id">UPI ID: <strong>9594704311.etb@icici</strong></p>
+                    <p class="qr-upi-id"><strong>SMS Foundation</strong></p>
 
                     <div class="upi-app-buttons">
                       <a [href]="phonePeLink" class="upi-app-btn phonepe-btn" (click)="onQrClick($event)">PhonePe</a>
@@ -580,7 +732,7 @@
                   <div class="payment-steps">
                     <div class="pay-step">
                       <span class="pay-step-num">1</span>
-                      <span>Tap the QR image or an app button below to auto-open your UPI app</span>
+                      <span>Tap the QR image or an app button to auto-open your UPI app</span>
                     </div>
                     <div class="pay-step">
                       <span class="pay-step-num">2</span>
@@ -588,16 +740,16 @@
                     </div>
                     <div class="pay-step">
                       <span class="pay-step-num">3</span>
-                      <span>Pay <strong>{{ isWorker ? '₹1,200' : '₹200' }}</strong> and note the UTR number</span>
+                      <span>Pay <strong>{{ isWorker ? '₹1,200' : '₹200' }}</strong> and note the UTR number from your UPI app</span>
                     </div>
                     <div class="pay-step">
                       <span class="pay-step-num">4</span>
-                      <span>Enter UTR below and click Confirm Payment</span>
+                      <span>Enter UTR below and click <strong>Confirm Payment</strong></span>
                     </div>
                   </div>
-                </div>
+                </div><!-- /payment-qr-section -->
 
-                <!-- UTR Confirmation -->
+                <!-- UTR Confirmation form -->
                 <div class="payment-confirm-section">
                   <h4 class="payment-sub-title">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -608,24 +760,31 @@
                     Confirm Payment
                   </h4>
 
-                 <div class="field-group">
+                  <!-- Inline confirmation number reminder -->
+                  <div class="conf-reminder">
+                    <span class="conf-reminder-label">Confirmation No.:</span>
+                    <span class="conf-reminder-value">{{ confirmationNumber }}</span>
+                  </div>
+
+                  <!-- UTR input -->
+                  <div class="field-group">
                     <label class="field-label">
                       UTR / Transaction Number <span class="req-star">*</span>
                     </label>
                     <div class="input-wrap" [class.error]="isInvalid('utr')">
                       <input type="text"
-                            formControlName="utr"
-                            placeholder="Enter UTR number"
-                            maxlength="22"
-                            (input)="onUtrInput($event)" />
+                             formControlName="utr"
+                             placeholder="Enter UTR number"
+                             maxlength="22"
+                             (input)="onUtrInput($event)" />
                     </div>
                     <span class="field-error" *ngIf="isInvalid('utr')">UTR number is required</span>
                     <span class="field-hint">
-                      You can find the UTR/Reference number in your UPI app transaction history
+                      Find the UTR / Reference number in your UPI app transaction history
                     </span>
                   </div>
 
-       
+                  <!-- Amount (readonly) -->
                   <div class="field-group">
                     <label class="field-label">Amount Paid <span class="req-star">*</span></label>
                     <div class="input-wrap input-readonly">
@@ -633,7 +792,19 @@
                     </div>
                   </div>
 
-                  <button type="button" class="btn-submit" [disabled]="loading" (click)="confirmPayment()">
+                  <!-- Email notice -->
+                  <div class="email-notice">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    A confirmation email will be sent to your registered email address after payment is confirmed.
+                  </div>
+
+                  <!-- Confirm button -->
+                  <button type="button" class="btn-submit"
+                          [disabled]="loading" (click)="confirmPayment()">
                     <span *ngIf="!loading">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                            stroke="currentColor" stroke-width="2.5">
@@ -647,15 +818,17 @@
                         <circle cx="12" cy="12" r="10"
                                 stroke-dasharray="60" stroke-dashoffset="20"/>
                       </svg>
-                      Verifying...
+                      Verifying &amp; Sending Email...
                     </span>
                   </button>
 
                   <button type="button" class="btn-back" (click)="switchTab('registration')">
                     ← Back to Registration
                   </button>
-                </div>
-              </div>
+
+                </div><!-- /payment-confirm-section -->
+
+              </div><!-- /payment-body -->
 
             </div>
             <!-- END TAB 2 -->
@@ -665,6 +838,7 @@
                  TAB 3 — DONE
             ══════════════════════════════ -->
             <div *ngIf="activeTab === 'done'" class="done-tab">
+
               <div class="done-icon">
                 <svg width="64" height="64" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="1.5">
@@ -672,29 +846,37 @@
                   <polyline points="22 4 12 14.01 9 11.01"/>
                 </svg>
               </div>
+
               <h3>Registration Complete!</h3>
-              <p>Your registration has been received. Our team will verify your payment and activate your account shortly.</p>
+              <p>
+                Your registration has been received and payment confirmed.
+                A confirmation email has been sent to your registered email address.
+                Our team will verify and activate your account shortly.
+              </p>
 
               <div class="done-reg-no">
-                <span>Your Registration Number</span>
-                <strong>{{ registrationNumber }}</strong>
+                <span>Your Confirmation Number</span>
+                <strong>{{ confirmationNumber }}</strong>
+              </div>
+
+              <div class="done-email-note">
+                📧 Check your inbox for the payment confirmation details.
               </div>
 
               <a routerLink="/login" class="btn-submit"
                  style="display:inline-flex; text-decoration:none; margin-top:1.5rem;">
                 Go to Login
               </a>
+
             </div>
             <!-- END TAB 3 -->
 
-          </div>
-          <!-- END .form-card -->
+          </div><!-- /form-card -->
 
-        </div>
-        <!-- END .form-main --> 
- 
-      </div>
-    </div>
+        </div><!-- /form-main -->
+
+      </div><!-- /form-layout -->
+    </div><!-- /container -->
   </section>
 
-</div>
+</div><!-- /signup-page -->

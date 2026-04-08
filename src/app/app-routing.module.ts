@@ -1,33 +1,47 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { ProductsComponent } from './products/products.component';
-import { SignupComponent } from './signup/signup.component';
-import { PrivacyComponent } from './privacy/privacy.component';
-import { TermsComponent } from './terms/terms.component';
+import { HomeComponent }            from './home/home.component';
+import { AboutComponent }           from './about/about.component';
+import { ContactComponent }         from './contact/contact.component';
+import { GalleryComponent }         from './gallery/gallery.component';
+import { ProductsComponent }        from './products/products.component';
+import { SignupComponent }           from './signup/signup.component';
+import { LoginComponent }           from './login/login.component';
+import { PrivacyComponent }         from './privacy/privacy.component';
+import { TermsComponent }           from './terms/terms.component';
 import { CommissionChartComponent } from './commission-chart/commission-chart.component';
+import { DashboardComponent }       from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', redirectTo: '', pathMatch: 'full' },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'gallery', component: GalleryComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'privacy', component: PrivacyComponent },
-  { path: 'terms', component: TermsComponent },
+  // ── Public pages ─────────────────────────────────────────
+  { path: '',              component: HomeComponent },
+  { path: 'home',          redirectTo: '', pathMatch: 'full' },
+  { path: 'about',         component: AboutComponent },
+  { path: 'contact',       component: ContactComponent },
+  { path: 'gallery',       component: GalleryComponent },
+  { path: 'products',      component: ProductsComponent },
+  { path: 'privacy',       component: PrivacyComponent },
+  { path: 'terms',         component: TermsComponent },
+  { path: 'commission',    component: CommissionChartComponent },
+
+  // ── Auth ─────────────────────────────────────────────────
+  { path: 'login',         component: LoginComponent },
+  { path: 'signup',        redirectTo: 'signup/member', pathMatch: 'full' },
   { path: 'signup/member', component: SignupComponent },
   { path: 'signup/worker', component: SignupComponent },
-  { path: 'signup', redirectTo: 'signup/member', pathMatch: 'full' },
-  { path: 'commission', component: CommissionChartComponent },
-  { path: '**', redirectTo: '' }
+
+  // ── Protected — dashboard (Admin + Member + Worker) ──────
+  // All roles land here after login.
+  // Dashboard component reads role from localStorage and shows
+  // Admin view (full table) or Member/Worker profile accordingly.
+  { path: 'dashboard',     component: DashboardComponent },
+
+  // ── Fallback ──────────────────────────────────────────────
+  { path: '**',            redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })], // ← This solves the refresh issue
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { } 
+export class AppRoutingModule { }
