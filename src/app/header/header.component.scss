@@ -1,5 +1,5 @@
 // ============================================================
-// header.component.scss  — Complete professional version
+// header.component.scss  — Complete professional version (Mobile Fixed)
 // ============================================================
 
 // ── CSS Variables ────────────────────────────────────────────
@@ -23,6 +23,7 @@
   top: 0; left: 0; right: 0;
   z-index: 1000;
   background: var(--bg);
+  overflow: visible; // ✅ FIX: prevents clipping the mobile drawer/overlay
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &.scrolled {
@@ -42,7 +43,6 @@
   font-size: 12px;
   padding: 7px 0;
 
-  // ✅ FIX: Show topbar on mobile
   @media (max-width: 768px) {
     padding: 10px 0;
   }
@@ -59,12 +59,10 @@
     justify-content: space-between;
     gap: 12px;
 
-    // ✅ FIX: Stack vertically on mobile
     @media (max-width: 768px) {
       flex-direction: column;
       align-items: flex-start;
       gap: 8px;
-      padding: 2px 0;
     }
   }
 
@@ -74,7 +72,6 @@
     gap: 16px;
     flex-wrap: wrap;
 
-    // ✅ FIX: Stack contacts vertically on mobile
     @media (max-width: 768px) {
       flex-direction: column;
       align-items: flex-start;
@@ -85,45 +82,47 @@
 
   .topbar-link {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 6px;
     color: rgba(255,255,255,0.80);
     text-decoration: none;
     transition: color var(--transition);
     white-space: nowrap;
 
-    svg { flex-shrink: 0; }
+    svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
 
     &:hover { color: #fff; }
 
-    // ✅ FIX: Allow text to wrap on mobile
     @media (max-width: 768px) {
       white-space: normal;
-      align-items: flex-start;
-      font-size: 11px;
+      font-size: 12px;
       line-height: 1.5;
-
-      svg {
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
     }
   }
 
+  // ✅ Address — always visible on all screen sizes
   .topbar-link--lg {
-    @media (max-width: 1100px) { display: none; }
+    display: inline-flex;
 
-    // ✅ FIX: Show address on mobile too
-    @media (max-width: 768px) { display: inline-flex; }
+    @media (max-width: 1100px) and (min-width: 769px) {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      display: inline-flex;
+    }
   }
 
-  // ✅ FIX: Show contact text on mobile (was hidden before)
   .contact-text {
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.5;
+
     @media (max-width: 768px) {
-      display: inline;
-      font-size: 11px;
-      white-space: normal;
-      word-break: break-word;
+      font-size: 12px;
     }
   }
 
@@ -133,7 +132,6 @@
     background: rgba(255,255,255,0.25);
     flex-shrink: 0;
 
-    // ✅ FIX: Hide dividers on mobile (vertical stack doesn't need them)
     @media (max-width: 768px) { display: none; }
 
     &--lg {
@@ -141,7 +139,6 @@
     }
   }
 
-  // Social icons
   .topbar-social {
     display: flex;
     align-items: center;
@@ -167,12 +164,6 @@
       color: #fff;
     }
   }
-
-  // On small screens — left-align everything
-  @media (max-width: 576px) {
-    .topbar-inner  { justify-content: flex-start; }
-    .topbar-contacts { justify-content: flex-start; }
-  }
 }
 
 // ── Navbar ────────────────────────────────────────────────────
@@ -190,7 +181,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 24px; // ✅ FIX: was 250px which completely broke mobile layout
+
+    @media (max-width: 991px) {
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      gap: 8px;
+    }
   }
 }
 
@@ -281,7 +280,6 @@
   .chevron { transition: transform var(--transition); }
   .nav-dropdown.open .chevron { transform: rotate(180deg); }
 
-  // Dropdown panel
   .dropdown-panel {
     position: absolute;
     top: calc(100% + 12px);
@@ -336,6 +334,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-left: auto;   // ✅ pushes everything to the far right
+  flex-shrink: 0;      // ✅ FIX: prevents shrinking on mobile
+
+  @media (max-width: 991px) {
+    gap: 8px;
+  }
 }
 
 // Login button
@@ -496,7 +500,6 @@
     &.show { opacity: 1; visibility: visible; transform: translateY(0); }
   }
 
-  // User info header inside dropdown
   .user-menu-header {
     display: flex;
     align-items: center;
@@ -569,13 +572,15 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 38px; height: 38px;
+  width: 40px;
+  height: 40px;
   background: var(--hover-bg);
   border: 1px solid var(--border);
   border-radius: 9px;
   cursor: pointer;
   padding: 0;
-  flex-shrink: 0;
+  flex-shrink: 0;  // ✅ FIX: don't shrink the hamburger button
+  // ✅ FIX: removed conflicting margin-left: auto (navbar-right handles alignment)
 
   span {
     width: 18px; height: 2px;
@@ -626,7 +631,6 @@
 
   &.open { right: 0; }
 
-  // Header
   .drawer-header {
     display: flex;
     justify-content: space-between;
@@ -657,12 +661,12 @@
       display: flex; align-items: center; justify-content: center;
       color: #fff;
       transition: background var(--transition);
+      flex-shrink: 0;
 
       &:hover { background: rgba(255,255,255,0.22); }
     }
   }
 
-  // Logged-in user card
   .drawer-user-card {
     display: flex;
     align-items: center;
@@ -695,7 +699,6 @@
     }
   }
 
-  // Nav list
   .drawer-nav {
     flex: 1;
     overflow-y: auto;
@@ -704,7 +707,6 @@
     list-style: none;
     -webkit-overflow-scrolling: touch;
 
-    // Scrollbar
     &::-webkit-scrollbar { width: 4px; }
     &::-webkit-scrollbar-track { background: transparent; }
     &::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
@@ -753,7 +755,6 @@
       .dl-arrow { color: var(--accent); }
     }
 
-    // Accent signup buttons
     &--accent {
       background: linear-gradient(135deg, rgba(230,126,34,0.08), rgba(243,156,18,0.08));
       border: 1px dashed rgba(230,126,34,0.3);
@@ -763,7 +764,6 @@
     }
   }
 
-  // Accordion
   .drawer-accordion {
     &.open .chevron { transform: rotate(180deg); }
 
@@ -801,7 +801,6 @@
     hr { border: none; border-top: 1px solid var(--border); margin: 0; }
   }
 
-  // Footer
   .drawer-footer {
     padding: 14px 20px;
     border-top: 1px solid var(--border);
@@ -830,7 +829,7 @@
   }
 }
 
-// ── Role badge helper (used in user menu + drawer) ─────────────
+// ── Role badge helper ─────────────────────────────────────────
 .role-admin  { background: #e8eaf6; color: #3949ab; }
 .role-member { background: #e3f2fd; color: #1565c0; }
 .role-worker { background: #fff3e0; color: #e65100; }

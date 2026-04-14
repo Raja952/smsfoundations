@@ -82,6 +82,33 @@ export class ContactComponent implements OnInit {
       phone: '+91 XXXXX XXXXX',
       email: 'infosmsfoundations@gmail.com'
     },
+     {
+      name: 'Miss. Dhanara Devi',
+      role: 'Director',
+      img: 'assets/Images/ContactUS/Miss.Dhanara Devi.jpeg',
+      alt: 'Miss . Dhanara Devi',
+      bio: 'Miss . Dhanara Devi is the Director of SMS Foundation. He plays a vital role in expanding the foundation\'s reach and managing operations across multiple states.',
+      phone: '+91 XXXXX XXXXX',
+      email: 'infosmsfoundations@gmail.com'
+    },
+         {
+      name: 'Miss. Miss Anjali Rajbhar',
+      role: 'Director',
+      img: 'assets/Images/ContactUS/Miss Anjali Rajbhar.jpeg',
+      alt: 'Miss. Anjali Rajbhar',
+      bio: 'Miss. Anjali Rajbhar is the Director of SMS Foundation. He plays a vital role in expanding the foundation\'s reach and managing operations across multiple states.',
+      phone: '+91 XXXXX XXXXX',
+      email: 'infosmsfoundations@gmail.com'
+    },
+    {
+      name: 'Mr. Sushil Gupta',
+      role: 'Director',
+      img: 'assets/Images/ContactUS/Mr . Sushil Gupta.jpeg',
+      alt: 'Mr. Sushil Gupta',
+      bio: 'Mr. Sushil Gupta is the Director of SMS Foundation. He plays a vital role in expanding the foundation\'s reach and managing operations across multiple states.',
+      phone: '+91 XXXXX XXXXX',
+      email: 'infosmsfoundations@gmail.com'
+    },
     {
       name: 'Mr. Pankaj',
       role: 'Member',

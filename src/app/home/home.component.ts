@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   ];
 
   stats = [
-    { icon: 'fa fa-users', value: '10,000+', label: 'SMS PAD product' , img:'assets/Images/SMS.jpeg'},
+    { icon: 'fa fa-users', value: '10,000+', label: '' , img:'assets/Images/SMS.jpeg'},
     { icon: 'fa fa-product-hunt', value: '50,000+', label: 'ISO certificate', img:'assets/Images/ISOImage.jpg' }
   ];
 

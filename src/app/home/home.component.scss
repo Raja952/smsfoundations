@@ -27,24 +27,31 @@
   background: linear-gradient(180deg, #0f1228 0%, #0a0c1a 100%);
   color: white;
   padding: 40px 0 80px;
-  overflow: visible; /* ✅ must be visible for dropdown */
+  overflow: visible;
 }
 
+/* ✅ FIXED: Clear, properly fitted background image */
 .hero-logo-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.15;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .hero-logo-background img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;          /* fills the area without stretching */
+  object-position: center;    /* centers the image */
+  opacity: 0.35;              /* ✅ was 0.15 — now clearly visible */
+  filter: none;               /* ✅ no blur */
+  -webkit-filter: none;
+  image-rendering: auto;      /* ✅ sharp rendering */
+  display: block;
 }
 
 .hero-bg-shapes {
@@ -53,7 +60,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden; /* ✅ only shapes get clipped */
+  overflow: hidden;
   pointer-events: none;
   z-index: 1;
 }
@@ -96,7 +103,7 @@
   letter-spacing: 0.5px;
   margin-bottom: 20px;
   margin-top: 4px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -206,7 +213,6 @@
 
 /* ═══════════════════════════════════════════════════
    JOIN WRAPPER & DROPDOWN
-   ✅ Opens UPWARD so wave never clips it
 ═══════════════════════════════════════════════════ */
 .join-wrapper {
   position: relative;
@@ -221,7 +227,6 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* ✅ KEY FIX: bottom: calc(100% + 10px) opens the dropdown UPWARD */
 .join-dropdown {
   position: absolute;
   bottom: calc(100% + 10px);
@@ -241,7 +246,6 @@
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
 }
 
-/* Bridge gap between button and dropdown */
 .join-dropdown::after {
   content: '';
   position: absolute;
@@ -264,9 +268,7 @@
   width: 100%;
 }
 
-.join-option:hover {
-  background: #f0f9ff;
-}
+.join-option:hover { background: #f0f9ff; }
 
 .join-option .join-icon {
   font-size: 22px;
@@ -274,10 +276,7 @@
   flex-shrink: 0;
 }
 
-.join-option div {
-  display: flex;
-  flex-direction: column;
-}
+.join-option div { display: flex; flex-direction: column; }
 
 .join-option strong {
   display: block;
@@ -287,10 +286,7 @@
   margin-bottom: 2px;
 }
 
-.join-option small {
-  font-size: 12px;
-  color: #888;
-}
+.join-option small { font-size: 12px; color: #888; }
 
 .join-dropdown .join-option:first-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -317,15 +313,8 @@
   align-items: center;
 }
 
-.trust-item strong {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.trust-item span {
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
+.trust-item strong { font-size: 1.5rem; font-weight: 700; }
+.trust-item span   { font-size: 0.9rem; opacity: 0.8; }
 
 .trust-divider {
   width: 2px;
@@ -508,10 +497,7 @@
   margin-bottom: 20px;
 }
 
-.section-header h2 span {
-  color: #0f1228;
-  position: relative;
-}
+.section-header h2 span { color: #0f1228; position: relative; }
 
 .section-line {
   width: 80px;
@@ -558,10 +544,7 @@
   border: 1px solid rgba(15, 18, 40, 0.08);
 }
 
-.slogan-icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
+.slogan-icon { font-size: 2rem; margin-bottom: 10px; }
 
 .slogan-icon img {
   width: 60px;
@@ -600,15 +583,8 @@
 }
 
 .pillar-icon { font-size: 2.5rem; margin-bottom: 15px; }
-
-.pillar h4 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.pillar p { color: #666; line-height: 1.6; }
+.pillar h4  { font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 10px; }
+.pillar p   { color: #666; line-height: 1.6; }
 
 /* ═══════════════════════════════════════════════════
    PRODUCTS SECTION
@@ -673,9 +649,9 @@
   margin-bottom: 5px;
 }
 
-.product-sub { font-size: 0.9rem; color: #666; }
+.product-sub   { font-size: 0.9rem; color: #666; }
 .product-price-tag { text-align: right; }
-.price-label { font-size: 0.8rem; color: #666; display: block; }
+.price-label   { font-size: 0.8rem; color: #666; display: block; }
 
 .price-amount {
   font-size: 2rem;
@@ -819,7 +795,7 @@
 }
 
 .tech-header h3 { font-size: 1.5rem; font-weight: 700; color: #333; }
-.tech-sub { font-size: 0.9rem; color: #666; }
+.tech-sub  { font-size: 0.9rem; color: #666; }
 .tech-desc { color: #666; line-height: 1.7; margin-bottom: 10px; }
 
 .tech-badge-strip {
@@ -901,14 +877,8 @@
   font-size: 32px;
 }
 
-.feature-card h4 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.feature-card p { color: #666; line-height: 1.6; }
+.feature-card h4 { font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 15px; }
+.feature-card p  { color: #666; line-height: 1.6; }
 
 /* ═══════════════════════════════════════════════════
    JOIN SECTION
@@ -954,14 +924,8 @@
   flex-shrink: 0;
 }
 
-.join-card-header h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.join-card-header p { color: #666; }
+.join-card-header h3 { font-size: 1.5rem; font-weight: 700; color: #333; margin-bottom: 5px; }
+.join-card-header p  { color: #666; }
 
 .fee-row {
   display: flex;
@@ -974,7 +938,7 @@
   border: 1px solid rgba(15, 18, 40, 0.06);
 }
 
-.fee-label { font-size: 1.1rem; font-weight: 600; color: #333; }
+.fee-label  { font-size: 1.1rem; font-weight: 600; color: #333; }
 .fee-amount { font-size: 2rem; font-weight: 700; color: #23bff5; }
 
 .member-benefits-list {
@@ -1053,13 +1017,8 @@
   box-shadow: 0 10px 20px rgba(35, 191, 245, 0.3);
 }
 
-.btn-join-green {
-  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
-}
-
-.btn-join-green:hover {
-  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.35) !important;
-}
+.btn-join-green { background: linear-gradient(135deg, #22c55e, #16a34a) !important; }
+.btn-join-green:hover { box-shadow: 0 10px 20px rgba(34, 197, 94, 0.35) !important; }
 
 /* ISO Card */
 .iso-card {
@@ -1069,17 +1028,15 @@
 
 .iso-glow {
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
+  top: -50%; right: -50%;
+  width: 200%; height: 200%;
   background: radial-gradient(circle, rgba(35, 191, 245, 0.15) 0%, transparent 70%);
   opacity: 0.5;
   pointer-events: none;
 }
 
-.iso-badge { position: relative; margin-bottom: 20px; }
-.iso-content { position: relative; z-index: 2; }
+.iso-badge    { position: relative; margin-bottom: 20px; }
+.iso-content  { position: relative; z-index: 2; }
 
 .iso-label {
   display: inline-block;
@@ -1091,7 +1048,7 @@
 }
 
 .iso-content h3 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
-.iso-org { font-size: 1.2rem; font-weight: 500; margin-bottom: 20px; opacity: 0.9; }
+.iso-org  { font-size: 1.2rem; font-weight: 500; margin-bottom: 20px; opacity: 0.9; }
 .iso-desc { line-height: 1.8; margin-bottom: 30px; opacity: 0.8; }
 
 .iso-details {
@@ -1127,17 +1084,17 @@
    RESPONSIVE
 ═══════════════════════════════════════════════════ */
 @media (max-width: 992px) {
-  .welcome-title  { font-size: 2.5rem; }
+  .welcome-title    { font-size: 2.5rem; }
   .welcome-subtitle { font-size: 1.5rem; }
   .mission-layout,
-  .products-grid { grid-template-columns: 1fr; gap: 30px; }
-  .join-grid { grid-template-columns: 1fr 1fr; }
+  .products-grid    { grid-template-columns: 1fr; gap: 30px; }
+  .join-grid        { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
   .welcome-title    { font-size: 2rem; }
   .welcome-subtitle { font-size: 1.2rem; }
-  .slogan-line { font-size: 1rem; padding: 10px 20px; }
+  .slogan-line      { font-size: 1rem; padding: 10px 20px; }
 
   .hero-actions {
     flex-direction: column;
@@ -1151,15 +1108,21 @@
     justify-content: center;
   }
 
-  .trust-divider { width: 50px; height: 2px; }
-  .stats-grid { grid-template-columns: 1fr; }
-  .stat-item  { max-width: 100%; }
+  .trust-divider    { width: 50px; height: 2px; }
+  .stats-grid       { grid-template-columns: 1fr; }
+  .stat-item        { max-width: 100%; }
   .mission-slogans  { grid-template-columns: 1fr; }
   .req-benefits-grid { grid-template-columns: 1fr; }
-  .product-header { flex-direction: column; gap: 10px; }
+  .product-header   { flex-direction: column; gap: 10px; }
   .product-price-tag { text-align: left; }
-  .join-grid { grid-template-columns: 1fr; }
-  .ganesh-img { width: 150px; height: 190px; }
+  .join-grid        { grid-template-columns: 1fr; }
+  .ganesh-img       { width: 150px; height: 190px; }
+
+  /* ✅ On mobile: show image more centered and taller */
+  .hero-logo-background img {
+    object-position: center top;
+    opacity: 0.25;
+  }
 }
 
 @media (max-width: 600px) {
