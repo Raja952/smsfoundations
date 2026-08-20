@@ -1,5 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import * as $ from 'jquery';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Modal } from 'bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -13,35 +12,25 @@ interface Contact {
   email?: string;
 }
 
-interface HoverPosition {
-  x: number;
-  y: number;
-}
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
   contactForm: FormGroup;
   submitted = false;
-  loading: any = false;
+  loading: boolean = false;
   successMessage = '';
   errorMessage = '';
 
-  // For member modal (Contact type)
+  // For member modal
   selectedMember: Contact | null = null;
   showModal = false;
 
-  // For team member details modal (different from Contact)
+  // For team member details modal
   selectedMemberDetails: any = null;
   showMemberModal = false;
-
-  // For hover functionality
-  hoveredMember: Contact | null = null;
-  hoverPosition: HoverPosition = { x: 0, y: 0 };
-  hoverTimeout: any;
 
   members = [
     {
@@ -82,21 +71,21 @@ export class ContactComponent implements OnInit {
       phone: '+91 XXXXX XXXXX',
       email: 'infosmsfoundations@gmail.com'
     },
-     {
+    {
       name: 'Miss. Dhanara Devi',
       role: 'Director',
       img: 'assets/Images/ContactUS/Miss.Dhanara Devi.jpeg',
-      alt: 'Miss . Dhanara Devi',
-      bio: 'Miss . Dhanara Devi is the Director of SMS Foundation. He plays a vital role in expanding the foundation\'s reach and managing operations across multiple states.',
+      alt: 'Miss. Dhanara Devi',
+      bio: 'Miss. Dhanara Devi is the Director of SMS Foundation. She plays a vital role in expanding the foundation\'s reach and managing operations across multiple states.',
       phone: '+91 XXXXX XXXXX',
       email: 'infosmsfoundations@gmail.com'
     },
-         {
-      name: 'Miss. Miss Anjali Rajbhar',
+    {
+      name: 'Miss. Anjali Rajbhar',
       role: 'Director',
       img: 'assets/Images/ContactUS/Miss Anjali Rajbhar.jpeg',
       alt: 'Miss. Anjali Rajbhar',
-      bio: 'Miss. Anjali Rajbhar is the Director of SMS Foundation. He plays a vital role in expanding the foundation\'s reach and managing operations across multiple states.',
+      bio: 'Miss. Anjali Rajbhar is the Director of SMS Foundation. She plays a vital role in expanding the foundation\'s reach and managing operations across multiple states.',
       phone: '+91 XXXXX XXXXX',
       email: 'infosmsfoundations@gmail.com'
     },
@@ -150,20 +139,14 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  // Clean up timeout on component destroy
   ngOnDestroy(): void {
-    if (this.hoverTimeout) {
-      clearTimeout(this.hoverTimeout);
-    }
-    document.body.style.overflow = ''; // Reset body overflow
+    document.body.style.overflow = '';
   }
 
-  // Convenience getter for easy access to form fields
   get f() {
     return this.contactForm.controls;
   }
 
-  // Helper methods for template
   isFieldInvalid(fieldName: string): boolean {
     const field = this.contactForm.get(fieldName);
     return field ? (field.invalid && (field.dirty || field.touched || this.submitted)) : false;
@@ -174,12 +157,11 @@ export class ContactComponent implements OnInit {
     return field ? (field.hasError(errorType) && (field.dirty || field.touched || this.submitted)) : false;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
     this.successMessage = '';
     this.errorMessage = '';
 
-    // Stop here if form is invalid
     if (this.contactForm.invalid) {
       this.errorMessage = 'Please fill all required fields correctly.';
       return;
@@ -187,7 +169,6 @@ export class ContactComponent implements OnInit {
 
     this.loading = true;
 
-    // Simulate API call
     setTimeout(() => {
       console.log('Form submitted successfully:', this.contactForm.value);
       this.loading = false;
@@ -197,16 +178,15 @@ export class ContactComponent implements OnInit {
     }, 2000);
   }
 
-  openMemberModal(id: number) {
+  openMemberModal(id: number): void {
     this.selectedMemberDetails = this.members.find(m => m.id === id);
-    
     if (this.selectedMemberDetails) {
       this.showMemberModal = true;
-      this.GetDetails(); // Call Bootstrap modal
+      this.GetDetails();
     }
   }
 
-  GetDetails() {
+  GetDetails(): void {
     const modalElement = document.getElementById('memberModal');
     if (modalElement) {
       const modal = Modal.getOrCreateInstance(modalElement);
@@ -214,11 +194,10 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  closeMemberModal() {
+  closeMemberModal(): void {
     this.showMemberModal = false;
     this.selectedMemberDetails = null;
-    
-    // Also close Bootstrap modal if open
+
     const modalElement = document.getElementById('memberModal');
     if (modalElement) {
       const modal = Modal.getInstance(modalElement);
@@ -229,87 +208,28 @@ export class ContactComponent implements OnInit {
   }
 
   /**
-   * Opens modal with member details
-   * @param member The member to display
-   * @param event Optional mouse event for hover positioning
+   * Opens modal on click only
    */
-  openModal(member: Contact, event?: MouseEvent): void {
-    // Clear any pending hover timeout
-    if (this.hoverTimeout) {
-      clearTimeout(this.hoverTimeout);
-    }
-
-    // Set hovered member and position if event exists
-    if (event) {
-      this.hoveredMember = member;
-      this.hoverPosition = {
-        x: event.clientX + 15,
-        y: event.clientY - 50
-      };
-    }
-
+  openModal(member: Contact): void {
     this.selectedMember = member;
     this.showModal = true;
     document.body.style.overflow = 'hidden';
   }
 
   /**
-   * Opens modal with hover delay (for better UX)
-   */
-  openModalWithHover(member: Contact, event?: MouseEvent): void {
-    // Clear any existing timeout
-    if (this.hoverTimeout) {
-      clearTimeout(this.hoverTimeout);
-    }
-
-    // Set timeout to open modal after 300ms hover
-    this.hoverTimeout = setTimeout(() => {
-      this.openModal(member, event);
-    }, 300);
-  }
-
-  /**
    * Closes the modal
    */
   closeModal(): void {
-    // Clear any pending hover timeout
-    if (this.hoverTimeout) {
-      clearTimeout(this.hoverTimeout);
-    }
-
     this.showModal = false;
     this.selectedMember = null;
-    this.hoveredMember = null;
     document.body.style.overflow = '';
-  }
-
-  /**
-   * Handles mouse enter on member card
-   */
-  onMouseEnter(member: Contact, event: MouseEvent): void {
-    this.openModalWithHover(member, event);
-  }
-
-  /**
-   * Handles mouse leave on member card
-   */
-  onMouseLeave(): void {
-    // Clear timeout if mouse leaves before modal opens
-    if (this.hoverTimeout) {
-      clearTimeout(this.hoverTimeout);
-    }
-    
-    // Only close if modal is not shown
-    if (!this.showModal) {
-      this.hoveredMember = null;
-    }
   }
 
   /**
    * Handles image error - replaces with avatar
    */
   onImageError(member: Contact): void {
-    member.img = ''; // This will trigger avatar display
+    member.img = '';
   }
 
   /**
@@ -317,7 +237,6 @@ export class ContactComponent implements OnInit {
    */
   getInitials(name: string): string {
     if (!name) return '';
-    
     return name.trim().split(' ')
       .filter(word => word.length > 0)
       .slice(0, 2)
@@ -334,7 +253,7 @@ export class ContactComponent implements OnInit {
   }
 
   /**
-   * Handles keyboard events for accessibility
+   * Close modal on Escape key
    */
   @HostListener('document:keydown.escape', ['$event'])
   onEscapePress(event: KeyboardEvent): void {
@@ -343,20 +262,6 @@ export class ContactComponent implements OnInit {
     }
     if (this.showMemberModal) {
       this.closeMemberModal();
-    }
-  }
-
-  /**
-   * Handles click outside for modals (optional)
-   */
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const modal = document.querySelector('.member-modal');
-    const backdrop = document.querySelector('.modal-backdrop');
-    
-    // If click is on backdrop, close modal
-    if (backdrop && event.target === backdrop) {
-      this.closeModal();
     }
   }
 }

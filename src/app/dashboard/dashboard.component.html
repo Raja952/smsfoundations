@@ -1,8 +1,6 @@
 <div class="dashboard-container">
 
-  <!-- ═══════════════════════════════════════════
-       TOP BAR — shown for all roles
-  ═══════════════════════════════════════════ -->
+  <!-- TOP BAR -->
   <div class="dash-topbar">
     <div class="topbar-brand">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -32,13 +30,9 @@
   </div>
 
 
-  <!-- ═══════════════════════════════════════════════════════════
-       MEMBER / WORKER VIEW  — own profile only
-       Shown when isAdmin is false
-  ═══════════════════════════════════════════════════════════ -->
+  <!-- MEMBER / WORKER VIEW -->
   <div class="profile-wrapper" *ngIf="!isAdmin">
 
-    <!-- Loading -->
     <div class="profile-loading" *ngIf="profileLoading">
       <svg class="spin" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a3c6e" stroke-width="2">
         <circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"/>
@@ -46,7 +40,6 @@
       <p>Loading your profile...</p>
     </div>
 
-    <!-- Error -->
     <div class="profile-error-box" *ngIf="!profileLoading && profileError">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c62828" stroke-width="1.5">
         <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
@@ -54,20 +47,19 @@
       <p>{{ profileError }}</p>
     </div>
 
-    <!-- Profile Content -->
     <div *ngIf="!profileLoading && !profileError && profile">
 
-      <!-- Profile hero -->
       <div class="profile-hero">
-        <div class="profile-avatar" [class.worker-av]="isWorker">
-          {{ profile.fullName?.charAt(0)?.toUpperCase() }}
+        <div class="profile-photo-wrap">
+          <img *ngIf="profile.photoUrl" [src]="profile.photoUrl" [alt]="profile.fullName" class="profile-photo-img" />
+          <div *ngIf="!profile.photoUrl" class="profile-avatar" [class.worker-av]="isWorker">
+            {{ profile.fullName?.charAt(0)?.toUpperCase() }}
+          </div>
         </div>
         <div class="profile-hero-info">
           <h2>{{ profile.fullName }}</h2>
           <div class="profile-meta">
-            <span class="user-type-badge" [class.worker]="isWorker">
-              {{ isWorker ? 'Field Worker' : 'Member' }}
-            </span>
+            <span class="user-type-badge" [class.worker]="isWorker">{{ isWorker ? 'Field Worker' : 'Member' }}</span>
             <span class="status-badge" [class]="getProfileStatusClass()">
               <span class="status-dot"></span>{{ getProfileStatusLabel() }}
             </span>
@@ -76,15 +68,10 @@
         </div>
       </div>
 
-      <!-- Profile cards grid -->
       <div class="profile-grid">
-
-        <!-- Registration Details -->
         <div class="profile-card">
           <div class="pcard-header">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             Registration Details
           </div>
           <div class="pcard-body">
@@ -97,12 +84,9 @@
           </div>
         </div>
 
-        <!-- Personal Information -->
         <div class="profile-card">
           <div class="pcard-header">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             Personal Information
           </div>
           <div class="pcard-body">
@@ -117,12 +101,9 @@
           </div>
         </div>
 
-        <!-- Work Details (Worker only) -->
         <div class="profile-card" *ngIf="isWorker">
           <div class="pcard-header">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
             Work Details
           </div>
           <div class="pcard-body">
@@ -133,64 +114,45 @@
           </div>
         </div>
 
-        <!-- Payment Details -->
         <div class="profile-card">
           <div class="pcard-header">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
             Payment Details
           </div>
           <div class="pcard-body">
-            <div class="prow">
-              <span class="plabel">Status</span>
-              <span class="pval">
-                <span class="status-badge" [class]="getProfileStatusClass()">
-                  <span class="status-dot"></span>{{ getProfileStatusLabel() }}
-                </span>
-              </span>
-            </div>
+            <div class="prow"><span class="plabel">Status</span><span class="pval"><span class="status-badge" [class]="getProfileStatusClass()"><span class="status-dot"></span>{{ getProfileStatusLabel() }}</span></span></div>
             <div class="prow"><span class="plabel">Amount Paid</span><span class="pval">{{ profile.paymentAmount ? '₹' + profile.paymentAmount : '—' }}</span></div>
             <div class="prow"><span class="plabel">UTR Number</span><span class="pval mono">{{ (profile.utrNumber && profile.utrNumber !== 'PENDING') ? profile.utrNumber : '—' }}</span></div>
             <div class="prow" *ngIf="profile.paymentDate"><span class="plabel">Payment Date</span><span class="pval">{{ profile.paymentDate | date:'dd MMM yyyy' }}</span></div>
             <div class="prow" *ngIf="profile.approvedAt"><span class="plabel">Approved On</span><span class="pval">{{ profile.approvedAt | date:'dd MMM yyyy' }}</span></div>
           </div>
         </div>
+      </div>
 
-      </div><!-- /profile-grid -->
-
-      <!-- Pending notice -->
       <div class="pending-notice" *ngIf="getProfileStatusLabel() !== 'Approved ✓'">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f9a825" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f9a825" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <div>
           <strong>Account pending approval.</strong>
           Our team will review your payment and activate your account within 24–48 hours.
           Contact <a href="mailto:support@smsfoundation.in">support@smsfoundation.in</a> for help.
         </div>
       </div>
-
     </div>
-  </div><!-- /profile-wrapper -->
+  </div>
 
 
-  <!-- ═══════════════════════════════════════════════════════════
-       ADMIN VIEW — full dashboard
-       Shown only when isAdmin is true
-  ═══════════════════════════════════════════════════════════ -->
+  <!-- ADMIN VIEW -->
   <ng-container *ngIf="isAdmin">
 
-    <!-- Hero -->
     <section class="dashboard-hero">
       <div class="hero-shapes">
         <div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div>
       </div>
       <div class="container">
         <div class="hero-inner">
-          <div class="hero-badge"><span class="badge-dot"></span>Admin Dashboard</div>
+          <!-- <div class="hero-badge"><span class="badge-dot"></span>Admin Dashboard</div> -->
           <h1>Welcome Back, <span>{{ adminName }}</span></h1>
-          <p class="hero-subtitle">Manage and monitor all registered members and workers</p>
+          <!-- <p class="hero-subtitle">Manage and monitor all registered members and workers</p> -->
         </div>
       </div>
       <div class="hero-wave">
@@ -200,91 +162,39 @@
       </div>
     </section>
 
-    <!-- Stats -->
     <section class="stats-section">
       <div class="container">
         <div class="stats-grid">
-
-          <div class="stat-card" data-aos="fade-up">
-            <div class="stat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
-              </svg>
-            </div>
+          <div class="stat-card">
+            <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
             <div class="stat-info"><h3>{{ totalMembers }}</h3><p>Total Members</p></div>
-            <div class="stat-trend positive">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-              <span>+{{ newThisMonth }} this month</span>
-            </div>
+            <div class="stat-trend positive"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg><span>+{{ newThisMonth }} this month</span></div>
           </div>
-
-          <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="stat-icon worker">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
+          <div class="stat-card">
+            <div class="stat-icon worker"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
             <div class="stat-info"><h3>{{ totalWorkers }}</h3><p>Total Workers</p></div>
-            <div class="stat-trend positive">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-              <span>+{{ newWorkersThisMonth }} this month</span>
-            </div>
+            <div class="stat-trend positive"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg><span>+{{ newWorkersThisMonth }} this month</span></div>
           </div>
-
-          <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="stat-icon payment">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
-              </svg>
-            </div>
+          <div class="stat-card">
+            <div class="stat-icon payment"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
             <div class="stat-info"><h3>₹{{ totalRevenue | number }}</h3><p>Total Revenue</p></div>
-            <div class="stat-trend positive">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-              <span>+{{ revenueGrowth }}%</span>
-            </div>
+            <div class="stat-trend positive"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg><span>+{{ revenueGrowth }}%</span></div>
           </div>
-
-          <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="stat-icon pending">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </div>
+          <div class="stat-card">
+            <div class="stat-icon pending"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="stat-info"><h3>{{ pendingVerifications }}</h3><p>Pending Verifications</p></div>
             <div class="stat-trend neutral"><span>Awaiting action</span></div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- Charts -->
-    <section class="charts-section">
-      <div class="container">
-        <div class="charts-grid">
-          <div class="chart-card" data-aos="fade-right">
-            <div class="chart-header"><h3>Registration Trends</h3><p>Last 6 months activity</p></div>
-            <div class="chart-body"><canvas id="trendsChart"></canvas></div>
-          </div>
-          <div class="chart-card" data-aos="fade-left">
-            <div class="chart-header"><h3>User Distribution</h3><p>Members vs Workers</p></div>
-            <div class="chart-body"><canvas id="distributionChart"></canvas></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Table -->
     <section class="table-section">
       <div class="container">
-        <div class="table-card" data-aos="fade-up">
+        <div class="table-card">
 
-          <!-- Toast -->
-          <div class="toast-notification"
-               [class.show]="toastMessage"
-               [class.toast-success]="toastType === 'success'"
-               [class.toast-error]="toastType === 'error'">
+          <div class="toast-notification" [class.show]="toastMessage" [class.toast-success]="toastType === 'success'" [class.toast-error]="toastType === 'error'">
             <svg *ngIf="toastType==='success'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             <svg *ngIf="toastType==='error'"   width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
             {{ toastMessage }}
@@ -318,6 +228,7 @@
             <table class="members-table">
               <thead>
                 <tr>
+                  <th class="th-photo">Photo</th>
                   <th (click)="sortBy('registrationNo')">Reg No. <span *ngIf="sortField==='registrationNo'">{{ sortDirection==='asc'?'↑':'↓' }}</span></th>
                   <th (click)="sortBy('fullName')">Full Name <span *ngIf="sortField==='fullName'">{{ sortDirection==='asc'?'↑':'↓' }}</span></th>
                   <th (click)="sortBy('userType')">Type <span *ngIf="sortField==='userType'">{{ sortDirection==='asc'?'↑':'↓' }}</span></th>
@@ -330,11 +241,26 @@
               </thead>
               <tbody>
                 <tr *ngFor="let m of filteredMembers" [class.row-approved]="isApproved(m)">
-                  <td class="reg-no">{{ m.registrationNo }}</td>
-                  <td class="full-name">
-                    <div class="user-avatar" [class.worker-avatar]="m.userType==='Worker'"><span>{{ getInitials(m.fullName) }}</span></div>
-                    {{ m.fullName }}
+
+                  <!-- ══ PHOTO CELL ══ -->
+                  <td class="td-photo">
+                    <div class="thumb-wrap">
+                      <img *ngIf="m.photoUrl"
+                           [src]="m.photoUrl"
+                           [alt]="m.fullName"
+                           class="thumb-img"
+                           (click)="openView(m)"
+                           title="Click to view details" />
+                      <div *ngIf="!m.photoUrl"
+                           class="thumb-initials"
+                           [class.worker-av]="m.userType === 'Worker'">
+                        {{ getInitials(m.fullName) }}
+                      </div>
+                    </div>
                   </td>
+
+                  <td class="reg-no">{{ m.registrationNo }}</td>
+                  <td>{{ m.fullName }}</td>
                   <td><span class="user-type-badge" [class.worker]="m.userType==='Worker'">{{ m.userType }}</span></td>
                   <td>{{ m.email }}</td>
                   <td>{{ m.mobileNumber }}</td>
@@ -349,28 +275,18 @@
                   </td>
                   <td>
                     <div class="action-buttons">
-                      <button class="btn-action btn-view"    (click)="openView(m)"    title="View">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                      </button>
-                      <button class="btn-action btn-approve"
-                              [class.btn-approve-done]="isApproved(m)"
-                              [disabled]="approvingId === m.id"
-                              (click)="openApprove(m)"
-                              [title]="isApproved(m) ? 'Re-approve' : 'Approve payment'">
+                      <button class="btn-action btn-view"    (click)="openView(m)"    title="View"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                      <button class="btn-action btn-approve" [class.btn-approve-done]="isApproved(m)" [disabled]="approvingId === m.id" (click)="openApprove(m)" [title]="isApproved(m) ? 'Re-approve' : 'Approve payment'">
                         <svg *ngIf="approvingId !== m.id" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                         <svg *ngIf="approvingId === m.id" class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"/></svg>
                       </button>
-                      <button class="btn-action btn-edit"   (click)="openEdit(m)"    title="Edit">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                      </button>
-                      <button class="btn-action btn-delete" (click)="openDelete(m)"  title="Delete">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
-                      </button>
+                      <button class="btn-action btn-edit"   (click)="openEdit(m)"   title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                      <button class="btn-action btn-delete" (click)="openDelete(m)" title="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
                     </div>
                   </td>
                 </tr>
                 <tr *ngIf="filteredMembers.length === 0">
-                  <td colspan="8" class="no-data">
+                  <td colspan="9" class="no-data">
                     <div class="no-data-content">
                       <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                       <p>No records found</p>
@@ -383,13 +299,9 @@
 
           <div class="table-footer" *ngIf="totalPages > 1">
             <div class="pagination">
-              <button class="page-btn" [disabled]="currentPage===1" (click)="previousPage()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-              </button>
+              <button class="page-btn" [disabled]="currentPage===1" (click)="previousPage()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
               <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
-              <button class="page-btn" [disabled]="currentPage===totalPages" (click)="nextPage()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              </button>
+              <button class="page-btn" [disabled]="currentPage===totalPages" (click)="nextPage()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
             </div>
             <div class="showing-info">Showing {{ startIndex+1 }} to {{ endIndex }} of {{ totalFiltered }} entries</div>
           </div>
@@ -398,12 +310,28 @@
       </div>
     </section>
 
-  </ng-container><!-- /Admin view -->
+    
+    <section class="charts-section">
+      <div class="container">
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-header"><h3>Registration Trends</h3><p>Last 6 months activity</p></div>
+            <div class="chart-body"><canvas id="trendsChart"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header"><h3>User Distribution</h3><p>Members vs Workers</p></div>
+            <div class="chart-body"><canvas id="distributionChart"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div><!-- /dashboard-container -->
+  </ng-container>
+
+</div>
 
 
-<!-- ════ VIEW MODAL ════ -->
+<!-- VIEW MODAL -->
 <div class="modal" [class.show]="showViewModal" (click)="closeView()">
   <div class="modal-content modal-lg" (click)="$event.stopPropagation()">
     <div class="modal-header">
@@ -414,6 +342,27 @@
       <button class="modal-close" (click)="closeView()">×</button>
     </div>
     <div class="modal-body" *ngIf="selectedMember">
+
+      <div class="view-photo-hero">
+        <div class="view-photo-box">
+          <img *ngIf="selectedMember.photoUrl" [src]="selectedMember.photoUrl" [alt]="selectedMember.fullName" class="view-photo-img" />
+          <div *ngIf="!selectedMember.photoUrl" class="view-photo-placeholder" [class.worker-av]="selectedMember.userType === 'Worker'">{{ getInitials(selectedMember.fullName) }}</div>
+          <span class="no-photo-label" *ngIf="!selectedMember.photoUrl">No photo</span>
+        </div>
+        <div class="view-photo-info">
+          <h4>{{ selectedMember.fullName }}</h4>
+          <span class="user-type-badge" [class.worker]="selectedMember.userType === 'Worker'">{{ selectedMember.userType }}</span>
+          <p class="mono view-reg-no">{{ selectedMember.registrationNo }}</p>
+          <span class="status-badge" [class.status-approved]="isApproved(selectedMember)" [class.status-confirmed]="isConfirmed(selectedMember)" [class.status-pending]="isPending(selectedMember)">
+            <span class="status-dot"></span>{{ getStatusLabel(selectedMember) }}
+          </span>
+          <a *ngIf="selectedMember.photoUrl" [href]="selectedMember.photoUrl" target="_blank" class="photo-full-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View full photo
+          </a>
+        </div>
+      </div>
+
       <div class="details-grid">
         <div class="detail-item"><label>Registration No.</label><span class="mono">{{ selectedMember.registrationNo }}</span></div>
         <div class="detail-item"><label>Full Name</label><span>{{ selectedMember.fullName }}</span></div>
@@ -439,15 +388,14 @@
     </div>
     <div class="modal-footer">
       <button class="btn-secondary" (click)="closeView()">Close</button>
-      <button class="btn-edit-inline" *ngIf="selectedMember" (click)="closeView(); openEdit(selectedMember)">Edit</button>
-      <button class="btn-approve-inline" *ngIf="selectedMember" (click)="closeView(); openApprove(selectedMember)">
-        {{ isApproved(selectedMember) ? 'Re-Approve' : 'Approve' }}
-      </button>
+      <button class="btn-edit-inline"    *ngIf="selectedMember" (click)="closeView(); openEdit(selectedMember)">Edit</button>
+      <button class="btn-approve-inline" *ngIf="selectedMember" (click)="closeView(); openApprove(selectedMember)">{{ isApproved(selectedMember) ? 'Re-Approve' : 'Approve' }}</button>
     </div>
   </div>
 </div>
 
-<!-- ════ EDIT MODAL ════ -->
+
+<!-- EDIT MODAL -->
 <div class="modal" [class.show]="showEditModal" (click)="closeEdit()">
   <div class="modal-content modal-lg" (click)="$event.stopPropagation()">
     <div class="modal-header" style="background:linear-gradient(135deg,#1a3c6e,#2563a8);">
@@ -492,7 +440,8 @@
   </div>
 </div>
 
-<!-- ════ DELETE MODAL ════ -->
+
+<!-- DELETE MODAL -->
 <div class="modal" [class.show]="showDeleteModal" (click)="closeDelete()">
   <div class="modal-content modal-sm" (click)="$event.stopPropagation()">
     <div class="modal-header" style="background:linear-gradient(135deg,#b71c1c,#c62828);">
@@ -516,7 +465,8 @@
   </div>
 </div>
 
-<!-- ════ APPROVE MODAL ════ -->
+
+<!-- APPROVE MODAL -->
 <div class="modal" [class.show]="showApproveModal" (click)="closeApprove()">
   <div class="modal-content modal-sm" (click)="$event.stopPropagation()">
     <div class="modal-header" style="background:linear-gradient(135deg,#1b5e20,#2e7d32);">

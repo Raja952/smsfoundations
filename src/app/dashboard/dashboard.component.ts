@@ -11,18 +11,18 @@ Chart.register(...registerables);
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
 
-  // ── Current user (from localStorage) ──────────────────────────────────────
-  currentUser: any   = null;
-  isAdmin      = false;
-  isMember     = false;
-  isWorker     = false;
-  userName     = 'User';
-  adminName    = 'Admin';
+  // ── Current user ───────────────────────────────────────────────────────────
+  currentUser: any = null;
+  isAdmin   = false;
+  isMember  = false;
+  isWorker  = false;
+  userName  = 'User';
+  adminName = 'Admin';
 
   // ── Member/Worker own profile ──────────────────────────────────────────────
-  profile:        any  = null;
-  profileLoading       = false;
-  profileError         = '';
+  profile:        any = null;
+  profileLoading      = false;
+  profileError        = '';
 
   // ── Admin stats ────────────────────────────────────────────────────────────
   totalMembers         = 0;
@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   newWorkersThisMonth  = 0;
   revenueGrowth        = 0;
 
-  // ── Admin table data ───────────────────────────────────────────────────────
+  // ── Admin table ────────────────────────────────────────────────────────────
   allMembers:      any[] = [];
   filteredMembers: any[] = [];
 
@@ -95,30 +95,24 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   // ══════════════════════════════════════════════════════════════
-  // INIT — detect role from localStorage, load accordingly
+  // INIT
   // ══════════════════════════════════════════════════════════════
   ngOnInit(): void {
-    // Read stored login info
     const stored = localStorage.getItem('sms_user');
-    if (!stored) {
-      this.router.navigate(['/login']);
-      return;
-    }
+    if (!stored) { this.router.navigate(['/login']); return; }
 
     this.currentUser = JSON.parse(stored);
-    this.userName    = this.currentUser.fullName || this.currentUser.firstName || 'User';
+    this.userName    = this.currentUser.fullName || 'User';
     this.adminName   = this.userName;
 
-    const role = (this.currentUser.userType || '').toLowerCase();
+    const role   = (this.currentUser.userType || '').toLowerCase();
     this.isAdmin  = role === 'admin';
     this.isMember = role === 'member';
     this.isWorker = role === 'worker';
 
     if (this.isAdmin) {
-      // Admin → load all registrations
       this.loadAllData();
     } else {
-      // Member / Worker → load only their own profile
       this.loadMyProfile();
     }
   }
@@ -134,14 +128,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   // ══════════════════════════════════════════════════════════════
-  // MEMBER / WORKER — load own profile
+  // MEMBER / WORKER — own profile
   // ══════════════════════════════════════════════════════════════
   loadMyProfile(): void {
     const regNo = this.currentUser.registrationNo;
-    if (!regNo) {
-      this.profileError = 'Registration number not found. Please contact support.';
-      return;
-    }
+    if (!regNo) { this.profileError = 'Registration number not found. Please contact support.'; return; }
 
     this.profileLoading = true;
     this.profileError   = '';
@@ -149,14 +140,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const params = new HttpParams().set('registrationNo', regNo);
 
     this.http.get<any>(`${this.base}/get-registration`, { params }).subscribe({
-      next: (data) => {
-        this.profile        = data;
-        this.profileLoading = false;
-      },
-      error: (err) => {
-        this.profileLoading = false;
-        this.profileError   = err.error?.error || 'Failed to load your profile.';
-      }
+      next:  (data) => { this.profile = data; this.profileLoading = false; },
+      error: (err)  => { this.profileLoading = false; this.profileError = err.error?.error || 'Failed to load your profile.'; }
     });
   }
 
@@ -184,18 +169,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // alias kept for compatibility
   loadData(): void { this.loadAllData(); }
 
   loadMockData(): void {
     this.allMembers = [
-      { id: 1, registrationNo: 'SMS-202604-0001', confirmationNumber: 'CONF-202604-0001', fullName: 'Rajesh Kumar',  userType: 'Member', email: 'rajesh@example.com',  mobileNumber: '9876543210', aadhaarNumber: '123456789012', panNumber: 'ABCDE1234F', accountNumber: '1234567890', address: 'Mumbai, Maharashtra', designation: 'Manager', skill: null, workArea: null, experience: null, availability: null, registeredAt: new Date('2024-04-01'), paymentStatus: 'Confirmed',  utrNumber: 'UTR111111111', paymentAmount: 200,  paymentDate: new Date('2024-04-01'), approvalToken: 'tok-001', approvedAt: null, approvedBy: null },
-      { id: 2, registrationNo: 'WRK-001',          confirmationNumber: 'CONF-202604-0002', fullName: 'Priya Sharma',  userType: 'Worker', email: 'priya@example.com',   mobileNumber: '9876543211', aadhaarNumber: '123456789013', panNumber: null, accountNumber: '1234567891', address: 'Delhi, India', designation: null, skill: 'Field Work', workArea: 'Andheri', experience: '1-3 years', availability: 'Full Time', registeredAt: new Date('2024-04-02'), paymentStatus: 'Approved', utrNumber: 'UTR222222222', paymentAmount: 1200, paymentDate: new Date('2024-04-02'), approvalToken: 'tok-002', approvedAt: new Date('2024-04-03'), approvedBy: 'Admin' },
-      { id: 3, registrationNo: 'SMS-202604-0002', confirmationNumber: 'CONF-202604-0003', fullName: 'Amit Verma',   userType: 'Member', email: 'amit@example.com',    mobileNumber: '9876543212', aadhaarNumber: '123456789014', panNumber: 'FGHIJ5678K', accountNumber: '1234567892', address: 'Pune, Maharashtra', designation: 'Agent', skill: null, workArea: null, experience: null, availability: null, registeredAt: new Date('2024-04-03'), paymentStatus: 'Pending', utrNumber: 'PENDING', paymentAmount: 200, paymentDate: null, approvalToken: null, approvedAt: null, approvedBy: null },
+      { id: 1, registrationNo: 'SMS-202604-0001', fullName: 'Rajesh Kumar',  userType: 'Member', email: 'rajesh@example.com',  mobileNumber: '9876543210', aadhaarNumber: '123456789012', panNumber: 'ABCDE1234F', accountNumber: '1234567890', address: 'Mumbai, Maharashtra', designation: 'Manager', registeredAt: new Date('2024-04-01'), paymentStatus: 'Confirmed',  utrNumber: 'UTR111111111', paymentAmount: 200,  paymentDate: new Date('2024-04-01'), photoUrl: null },
+      { id: 2, registrationNo: 'WRK-001',         fullName: 'Priya Sharma',  userType: 'Worker', email: 'priya@example.com',   mobileNumber: '9876543211', aadhaarNumber: '123456789013', panNumber: null,          accountNumber: '1234567891', address: 'Delhi, India',        skill: 'Field Work', workArea: 'Andheri', experience: '1-3 years', availability: 'Full Time', registeredAt: new Date('2024-04-02'), paymentStatus: 'Approved', utrNumber: 'UTR222222222', paymentAmount: 1200, paymentDate: new Date('2024-04-02'), approvedAt: new Date('2024-04-03'), approvedBy: 'Admin', photoUrl: null },
+      { id: 3, registrationNo: 'SMS-202604-0002', fullName: 'Amit Verma',   userType: 'Member', email: 'amit@example.com',    mobileNumber: '9876543212', aadhaarNumber: '123456789014', panNumber: 'FGHIJ5678K', accountNumber: '1234567892', address: 'Pune, Maharashtra',    designation: 'Agent',   registeredAt: new Date('2024-04-03'), paymentStatus: 'Pending',   utrNumber: 'PENDING',     paymentAmount: 200,  paymentDate: null, photoUrl: null },
     ];
-    this.calculateStats();
-    this.filterMembers();
-    this.initCharts();
+    this.calculateStats(); this.filterMembers(); this.initCharts();
   }
 
   // ══════════════════════════════════════════════════════════════
@@ -227,8 +209,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   // ══════════════════════════════════════════════════════════════
   // STATUS HELPERS
   // ══════════════════════════════════════════════════════════════
-  isApproved(m: any):  boolean { const s = (m.paymentStatus||'').toLowerCase(); return s === 'approved'; }
-  isConfirmed(m: any): boolean { const s = (m.paymentStatus||'').toLowerCase(); return s === 'confirmed' || s === 'payment received'; }
+  isApproved(m: any):  boolean { return (m.paymentStatus || '').toLowerCase() === 'approved'; }
+  isConfirmed(m: any): boolean { const s = (m.paymentStatus || '').toLowerCase(); return s === 'confirmed' || s === 'payment received'; }
   isPending(m: any):   boolean { return !this.isApproved(m) && !this.isConfirmed(m); }
   canApprove(m: any):  boolean { return !this.isApproved(m); }
 
@@ -247,10 +229,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.searchTerm) {
       const t = this.searchTerm.toLowerCase();
       f = f.filter(m =>
-        (m.fullName       ||'').toLowerCase().includes(t) ||
-        (m.email          ||'').toLowerCase().includes(t) ||
-        (m.registrationNo ||'').toLowerCase().includes(t) ||
-        (m.mobileNumber   ||'').includes(t)
+        (m.fullName       || '').toLowerCase().includes(t) ||
+        (m.email          || '').toLowerCase().includes(t) ||
+        (m.registrationNo || '').toLowerCase().includes(t) ||
+        (m.mobileNumber   || '').includes(t)
       );
     }
 
@@ -262,7 +244,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       let av = a[this.sortField];
       let bv = b[this.sortField];
       if (this.sortField === 'registeredAt') { av = new Date(av).getTime(); bv = new Date(bv).getTime(); }
-      if (av < bv) { return this.sortDirection === 'asc' ? -1 : 1; }
+      if (av < bv) { return this.sortDirection === 'asc' ? -1 :  1; }
       if (av > bv) { return this.sortDirection === 'asc' ?  1 : -1; }
       return 0;
     });
@@ -281,7 +263,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.filterMembers();
   }
 
-  previousPage(): void { if (this.currentPage > 1)             { this.currentPage--; this.filterMembers(); } }
+  previousPage(): void { if (this.currentPage > 1)              { this.currentPage--; this.filterMembers(); } }
   nextPage():     void { if (this.currentPage < this.totalPages) { this.currentPage++; this.filterMembers(); } }
   get startIndex(): number { return (this.currentPage - 1) * this.pageSize; }
   get endIndex():   number { return Math.min(this.startIndex + this.pageSize, this.totalFiltered); }
@@ -294,10 +276,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   // ══════════════════════════════════════════════════════════════
   // VIEW MODAL
   // ══════════════════════════════════════════════════════════════
-  openView(member: any):      void { this.selectedMember = { ...member }; this.showViewModal = true; }
-  closeView():                void { this.showViewModal = false; this.selectedMember = null; }
-  viewMemberDetails(m: any):  void { this.openView(m); }
-  closeModal(event?: any):    void { this.closeView(); }
+  openView(member: any):   void { this.selectedMember = { ...member }; this.showViewModal = true; }
+  closeView():             void { this.showViewModal = false; this.selectedMember = null; }
+  viewMemberDetails(m: any): void { this.openView(m); }
+  closeModal(event?: any): void { this.closeView(); }
 
   // ══════════════════════════════════════════════════════════════
   // EDIT MODAL
@@ -309,7 +291,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       mobileNumber:   member.mobileNumber,
       email:          member.email,
       address:        member.address,
-      designation:    member.designation || '',
+      designation:    member.designation  || '',
       skill:          member.skill        || '',
       workArea:       member.workArea     || '',
       experience:     member.experience   || '',
@@ -329,7 +311,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   saveEdit(): void {
     if (this.editLoading) { return; }
-    if (!this.editForm.fullName?.trim())    { this.editError = 'Full name is required.';    return; }
+    if (!this.editForm.fullName?.trim())     { this.editError = 'Full name is required.';    return; }
     if (!this.editForm.mobileNumber?.trim()) { this.editError = 'Mobile number is required.'; return; }
     if (!this.editForm.email?.trim())        { this.editError = 'Email is required.';         return; }
     if (!this.editForm.address?.trim())      { this.editError = 'Address is required.';       return; }
@@ -454,17 +436,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   // EXPORT
   // ══════════════════════════════════════════════════════════════
   exportToExcel(): void {
-    const headers = ['Reg No', 'Full Name', 'Type', 'Email', 'Mobile', 'Registered On', 'Payment Status', 'Amount', 'UTR'];
+    const headers = ['Reg No', 'Full Name', 'Type', 'Email', 'Mobile', 'Registered On', 'Payment Status', 'Amount', 'UTR', 'Photo URL'];
     const rows    = this.allMembers.map(m => [
       m.registrationNo, m.fullName, m.userType, m.email, m.mobileNumber,
       new Date(m.registeredAt).toLocaleDateString('en-IN'),
-      m.paymentStatus, m.paymentAmount, m.utrNumber
+      m.paymentStatus, m.paymentAmount, m.utrNumber, m.photoUrl || ''
     ]);
     const csv  = [headers, ...rows].map(r => r.map((v: any) => `"${v ?? ''}"`).join(',')).join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
-    a.href = url; a.download = `registrations_${new Date().toISOString().slice(0,10)}.csv`; a.click();
+    a.href = url; a.download = `registrations_${new Date().toISOString().slice(0, 10)}.csv`; a.click();
     URL.revokeObjectURL(url);
   }
 
@@ -481,7 +463,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [
           { label: 'Members', data: [12, 19, 15, 25, 22, 30], borderColor: '#1a3c6e', backgroundColor: 'rgba(26,60,110,0.08)', tension: 0.4, fill: true },
-          { label: 'Workers', data: [5,  8,  7,  12, 10, 15], borderColor: '#e65100', backgroundColor: 'rgba(230,81,0,0.08)',  tension: 0.4, fill: true }
+          { label: 'Workers', data: [5,   8,  7, 12, 10, 15], borderColor: '#e65100', backgroundColor: 'rgba(230,81,0,0.08)',  tension: 0.4, fill: true }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }

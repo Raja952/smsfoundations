@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommissionChartComponent } from './commission-chart/commission-chart.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PaymentServiceComponent } from './payment-service/payment-service.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommonModule,
     FormsModule
   ],
-  providers: [],
+  providers: [PaymentServiceComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

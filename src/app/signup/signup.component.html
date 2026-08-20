@@ -3,30 +3,30 @@
   <!-- ═══════════════════════════════════════════════════
        HERO
   ═══════════════════════════════════════════════════ -->
-  <section class="signup-hero">
-    <div class="hero-shapes">
-      <div class="shape s1"></div>
-      <div class="shape s2"></div>
-      <div class="shape s3"></div>
-    </div>
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          {{ isWorker ? 'Become a Worker' : 'Become a Member' }}
-        </div>
-        <h1>
-          {{ isWorker ? 'Join as' : 'Join' }}
-          <span>{{ isWorker ? 'Field Worker' : 'SMS Foundation' }}</span>
-        </h1>
+<section class="signup-hero">
+  <div class="hero-shapes">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        {{ isWorker ? 'Become a Worker' : 'Become a Member' }}
       </div>
+      <h1>
+        {{ isWorker ? 'Join as' : 'Join' }}
+        <span>{{ isWorker ? 'Field Worker' : 'SMS Foundation' }}</span>
+      </h1>
     </div>
-    <div class="hero-wave">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none">
-        <path d="M0,0 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="#f4f6fa"/>
-      </svg>
-    </div>
-  </section>
+  </div>
+  <div class="hero-wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
+      <path d="M0,0 C480,40 960,0 1440,28 L1440,40 L0,40 Z" fill="#f4f6fa"/>
+    </svg>
+  </div>
+</section>
 
 
   <!-- ═══════════════════════════════════════════════════
@@ -43,7 +43,7 @@
             <div class="fee-icon">💰</div>
             <h4>Joining Fee</h4>
             <div class="fee-amount">
-              {{ isWorker ? '₹1,200' : '₹200' }}<span>/-</span>
+              {{ isWorker ? '₹1200' : '₹200' }}<span>/-</span>
             </div>
             <p>{{ isWorker ? 'One-time worker registration fee' : 'One-time registration fee to get started' }}</p>
           </div>
@@ -58,6 +58,7 @@
               Documents Required
             </h4>
             <ul>
+              <li><span>📷</span> Passport-size Photo</li>
               <li><span>📸</span> Aadhaar ID Proof</li>
               <li><span>🪪</span> PAN CARD ID Proof</li>
               <li><span>🏦</span> Bank Account Details</li>
@@ -111,7 +112,6 @@
             ══════════════════════════════ -->
             <div class="form-tabs">
 
-              <!-- Tab 1: Registration — always accessible -->
               <button
                 class="form-tab"
                 [class.active]="activeTab === 'registration'"
@@ -125,7 +125,6 @@
                 Registration
               </button>
 
-              <!-- Tab 2: Payment — unlocked only after confirmationNumber is set -->
               <button
                 class="form-tab"
                 [class.active]="activeTab === 'payment'"
@@ -143,7 +142,6 @@
                 <span class="tab-done-icon" *ngIf="confirmationNumber">✅</span>
               </button>
 
-              <!-- Tab 3: Done — always disabled (auto-navigated) -->
               <button
                 class="form-tab"
                 [class.active]="activeTab === 'done'"
@@ -225,7 +223,7 @@
                     <span class="field-error" *ngIf="isInvalid('fullName')">Full name is required</span>
                   </div>
 
-                  <!-- Father Name — visible for Mr / Miss -->
+                  <!-- Father Name -->
                   <div class="field-group" *ngIf="selectedTitle === 'Mr' || selectedTitle === 'Miss'">
                     <label class="field-label">Father Name <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('fatherName')">
@@ -234,7 +232,7 @@
                     <span class="field-error" *ngIf="isInvalid('fatherName')">Father name is required</span>
                   </div>
 
-                  <!-- Husband Name — visible for Mrs -->
+                  <!-- Husband Name -->
                   <div class="field-group" *ngIf="selectedTitle === 'Mrs'">
                     <label class="field-label">Husband Name <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('husbandName')">
@@ -243,7 +241,7 @@
                     <span class="field-error" *ngIf="isInvalid('husbandName')">Husband name is required</span>
                   </div>
 
-                  <!-- Nominee (person's name) -->
+                  <!-- Nominee -->
                   <div class="field-group">
                     <label class="field-label">Nominee <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('relation')">
@@ -255,7 +253,7 @@
                     <span class="field-error" *ngIf="isInvalid('relation')">Nominee name is required</span>
                   </div>
 
-                  <!-- Relation (dropdown) -->
+                  <!-- Relation -->
                   <div class="field-group">
                     <label class="field-label">Relation <span class="req-star">*</span></label>
                     <div class="input-wrap select-wrap" [class.error]="isInvalid('nominee')">
@@ -287,7 +285,7 @@
                     <span class="field-error" *ngIf="isInvalid('dob')">Date of birth is required</span>
                   </div>
 
-                  <!-- Mobile Number -->
+                  <!-- Mobile -->
                   <div class="field-group">
                     <label class="field-label">Mobile Number <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('mobile')">
@@ -427,33 +425,25 @@
                       <span class="field-error" *ngIf="isInvalid('availability')">Please select availability</span>
                     </div>
 
-                  </div><!-- /form-grid work -->
+                  </div>
                 </ng-container>
 
 
-                <!-- ════════════════════════════════
-                     Code Information
-                     Member: section 02 | Worker: section 03
-                ════════════════════════════════ -->
+                <!-- Code Information -->
                 <div class="form-section-label">
                   <span>{{ isWorker ? '03' : '02' }}</span> Code Information
                 </div>
 
                 <div class="form-grid">
 
-                  <!-- ── WORKER code fields ── -->
-
-                  <!-- Self Code (Worker) — AUTO-GENERATED on page load, readonly -->
+                  <!-- Self Code (Worker) -->
                   <div class="field-group" *ngIf="isWorker">
                     <label class="field-label">
                       Self Code <span class="req-star">*</span>
                       <span class="auto-badge">Auto</span>
                     </label>
                     <div class="input-wrap input-readonly" [class.loading-field]="selfCodeLoading">
-                      <input type="text"
-                             formControlName="selfCode"
-                             placeholder="Generating..."
-                             readonly>
+                      <input type="text" formControlName="selfCode" placeholder="Generating..." readonly>
                       <div *ngIf="selfCodeLoading" class="loading-spinner"></div>
                       <svg *ngIf="!selfCodeLoading && generatedSelfCode"
                            class="field-ok-icon" width="16" height="16" viewBox="0 0 24 24"
@@ -461,9 +451,7 @@
                         <polyline points="20 6 9 17 4 12"/>
                       </svg>
                     </div>
-                    <small class="text-muted" *ngIf="!selfCodeLoading && generatedSelfCode">
-                      Auto-generated worker code
-                    </small>
+                    <small class="text-muted" *ngIf="!selfCodeLoading && generatedSelfCode">Auto-generated worker code</small>
                     <small class="text-muted" *ngIf="selfCodeLoading">Generating worker code...</small>
                     <span class="field-error" *ngIf="isInvalid('selfCode')">Self code is required</span>
                   </div>
@@ -472,8 +460,7 @@
                   <div class="field-group" *ngIf="isWorker">
                     <label class="field-label">Self Rank Name <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('selfRankName')">
-                      <input type="text" formControlName="selfRankName"
-                             placeholder="Enter self rank name">
+                      <input type="text" formControlName="selfRankName" placeholder="Enter self rank name">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('selfRankName')">Self rank name is required</span>
                   </div>
@@ -482,8 +469,7 @@
                   <div class="field-group" *ngIf="isWorker">
                     <label class="field-label">Reference Code <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('referenceCode')">
-                      <input type="text" formControlName="referenceCode"
-                             placeholder="Enter reference code">
+                      <input type="text" formControlName="referenceCode" placeholder="Enter reference code">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('referenceCode')">Reference code is required</span>
                   </div>
@@ -492,26 +478,19 @@
                   <div class="field-group" *ngIf="isWorker">
                     <label class="field-label">Reference Rank Name <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('referenceRankName')">
-                      <input type="text" formControlName="referenceRankName"
-                             placeholder="Enter reference rank name">
+                      <input type="text" formControlName="referenceRankName" placeholder="Enter reference rank name">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('referenceRankName')">Reference rank name is required</span>
                   </div>
 
-
-                  <!-- ── MEMBER code fields ── -->
-
-                  <!-- Registration No. (Member) — AUTO-GENERATED on page load, readonly -->
+                  <!-- Registration No. (Member) -->
                   <div class="field-group" *ngIf="!isWorker">
                     <label class="field-label">
                       Registration No. <span class="req-star">*</span>
                       <span class="auto-badge">Auto</span>
                     </label>
                     <div class="input-wrap input-readonly" [class.loading-field]="registrationNoLoading">
-                      <input type="text"
-                             formControlName="registrationNo"
-                             placeholder="Generating..."
-                             readonly>
+                      <input type="text" formControlName="registrationNo" placeholder="Generating..." readonly>
                       <div *ngIf="registrationNoLoading" class="loading-spinner"></div>
                       <svg *ngIf="!registrationNoLoading && registrationNumber"
                            class="field-ok-icon" width="16" height="16" viewBox="0 0 24 24"
@@ -530,8 +509,7 @@
                   <div class="field-group" *ngIf="!isWorker">
                     <label class="field-label">Designation <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('designation')">
-                      <input type="text" formControlName="designation"
-                             placeholder="Enter designation">
+                      <input type="text" formControlName="designation" placeholder="Enter designation">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('designation')">Designation is required</span>
                   </div>
@@ -540,8 +518,7 @@
                   <div class="field-group" *ngIf="!isWorker">
                     <label class="field-label">Reference Code <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('referenceCode')">
-                      <input type="text" formControlName="referenceCode"
-                             placeholder="Enter reference code">
+                      <input type="text" formControlName="referenceCode" placeholder="Enter reference code">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('referenceCode')">Reference code is required</span>
                   </div>
@@ -550,20 +527,19 @@
                   <div class="field-group" *ngIf="!isWorker">
                     <label class="field-label">Reference Name <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('referenceName')">
-                      <input type="text" formControlName="referenceName"
-                             placeholder="Enter reference name">
+                      <input type="text" formControlName="referenceName" placeholder="Enter reference name">
                     </div>
                     <span class="field-error" *ngIf="isInvalid('referenceName')">Reference name is required</span>
                   </div>
 
-                  <!-- Registration Fee (both) -->
+                  <!-- Registration Fee -->
                   <div class="field-group">
                     <label class="field-label">Registration Fee <span class="req-star">*</span></label>
                     <div class="input-wrap select-wrap" [class.error]="isInvalid('amount')">
                       <select formControlName="amount">
                         <option value="">Select Amount</option>
                         <option *ngIf="!isWorker" [value]="200">₹200 — Member Joining Fee</option>
-                        <option *ngIf="isWorker"  [value]="1200">₹1,200 — Worker Registration Fee</option>
+                        <option *ngIf="isWorker"  [value]="1200">₹1200 — Worker Registration Fee</option>
                       </select>
                       <svg class="select-chevron" width="14" height="14" viewBox="0 0 24 24"
                            fill="none" stroke="currentColor" stroke-width="2.5">
@@ -574,6 +550,94 @@
                   </div>
 
                 </div><!-- /form-grid code -->
+
+
+                <!-- ════════════════════════════════
+                     00: Photo Upload
+                ════════════════════════════════ -->
+                <div class="form-section-label" id="photo-upload-section">
+                  <span>📷</span> Photo Upload
+                </div>
+
+                <div class="photo-upload-wrapper">
+
+                  <!-- Preview area -->
+                  <div class="photo-preview-box"
+                       [class.has-photo]="photoPreviewUrl"
+                       [class.photo-error-border]="photoError && !photoPreviewUrl">
+
+                    <!-- Placeholder state -->
+                    <div class="photo-placeholder" *ngIf="!photoPreviewUrl">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="1.5">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                      </svg>
+                      <span>Passport-size Photo</span>
+                    </div>
+
+                    <!-- Photo preview -->
+                    <img *ngIf="photoPreviewUrl"
+                         [src]="photoPreviewUrl"
+                         alt="Photo Preview"
+                         class="photo-preview-img" />
+
+                    <!-- Remove button -->
+                    <button *ngIf="photoPreviewUrl"
+                            type="button"
+                            class="photo-remove-btn"
+                            (click)="clearPhoto()"
+                            title="Remove photo">
+                      ×
+                    </button>
+                  </div>
+
+                  <!-- Upload controls -->
+                  <div class="photo-upload-controls">
+                    <p class="photo-instructions">
+                      Upload a recent passport-size photo <span class="req-star">*</span>
+                    </p>
+                    <ul class="photo-rules">
+                      <li>📐 JPG or PNG format only</li>
+                      <li>📦 Maximum file size: 5 MB</li>
+                      <li>🎨 Clear face, plain background preferred</li>
+                    </ul>
+
+                    <!-- Hidden file input -->
+                    <input type="file"
+                           id="photoInput"
+                           accept="image/jpeg,image/jpg,image/png"
+                           style="display:none"
+                           (change)="onPhotoSelected($event)" />
+
+                    <!-- Visible upload button -->
+                    <label for="photoInput" class="btn-photo-upload"
+                           [class.btn-photo-change]="photoPreviewUrl">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                      </svg>
+                      {{ photoPreviewUrl ? 'Change Photo' : 'Choose Photo' }}
+                    </label>
+
+                    <!-- Error message -->
+                    <span class="field-error photo-field-error" *ngIf="photoError">
+                      {{ photoError }}
+                    </span>
+
+                    <!-- Success indicator -->
+                    <div class="photo-success-chip" *ngIf="photoPreviewUrl && !photoError">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      Photo ready — will be saved to Google Drive
+                    </div>
+                  </div>
+
+                </div><!-- /photo-upload-wrapper -->
 
 
                 <!-- Terms & Conditions -->
@@ -629,10 +693,7 @@
 
 
             <!-- ══════════════════════════════
-                 TAB 2 — PAYMENT
-                 confirmationNumber (CONF-202504-0001) is shown here.
-                 It is generated AFTER Register is clicked — different
-                 series from registrationNumber (SMS-202504-0001).
+                 TAB 2 — PAYMENT (Razorpay)
             ══════════════════════════════ -->
             <div *ngIf="activeTab === 'payment'" class="payment-tab">
 
@@ -647,7 +708,7 @@
                   </div>
                   <div>
                     <h3>Complete Payment</h3>
-                    <p>Scan QR or pay via UPI, then enter UTR to confirm</p>
+                    <p>Pay securely with Razorpay — UPI, cards, netbanking, wallets</p>
                   </div>
                 </div>
                 <div class="step-indicator">
@@ -659,21 +720,15 @@
                 </div>
               </div>
 
-              <!-- ── Confirmation Number Banner ─────────────────────────────
-                   Shows CONF-202504-0001 (different from SMS-202504-0001)
-              ──────────────────────────────────────────────────────────── -->
               <div class="confirmation-number-banner">
                 <div class="conf-icon">🔖</div>
                 <div class="conf-details">
                   <span class="conf-label">Your Confirmation Number</span>
                   <strong class="conf-number">{{ confirmationNumber }}</strong>
-                  <small class="conf-hint">
-                    Keep this safe — quote it for any payment queries
-                  </small>
+                  <small class="conf-hint">Keep this safe — quote it for any payment queries</small>
                 </div>
               </div>
 
-              <!-- Summary strip -->
               <div class="reg-summary-banner">
                 <div class="reg-summary-item">
                   <span class="reg-label">Confirmation No.</span>
@@ -687,69 +742,62 @@
                 <div class="reg-summary-divider"></div>
                 <div class="reg-summary-item">
                   <span class="reg-label">Amount Due</span>
-                  <span class="reg-value fee-highlight">{{ isWorker ? '₹1,200' : '₹200' }}</span>
+                  <span class="reg-value fee-highlight">{{ isWorker ? '₹1200' : '₹200' }}</span>
                 </div>
               </div>
 
-              <!-- Payment Body -->
               <div class="payment-body">
 
-                <!-- QR / UPI section -->
+                <!-- ── Razorpay Section (replaces old QR section) ── -->
                 <div class="payment-qr-section">
                   <h4 class="payment-sub-title">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2">
-                      <rect x="3" y="3" width="7" height="7"/>
-                      <rect x="14" y="3" width="7" height="7"/>
-                      <rect x="3" y="14" width="7" height="7"/>
-                      <rect x="14" y="14" width="4" height="4"/>
+                      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                      <line x1="1" y1="10" x2="23" y2="10"/>
                     </svg>
-                    Scan &amp; Pay
+                    Secure Payment
                   </h4>
 
-                  <div class="qr-box">
-                    <a [href]="upiLink" class="qr-link" (click)="onQrClick($event)">
-                      <img src="assets/Images/payment.jpeg" alt="Payment QR Code" class="qr-image"/>
-                      <div class="qr-tap-overlay">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2">
-                          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                          <line x1="12" y1="18" x2="12.01" y2="18"/>
+                  <div class="razorpay-box">
+                    <p class="amount">Amount: ₹{{ amount }}</p>
+
+                    <button
+                      type="button"
+                      class="btn-submit"
+                      [disabled]="razorpayLoading"
+                      (click)="payWithRazorpay()">
+                      <span *ngIf="!razorpayLoading">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2.5">
+                          <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                          <line x1="1" y1="10" x2="23" y2="10"/>
                         </svg>
-                        &#x1F4F1; Tap to open UPI app
-                      </div>
-                    </a>
+                        Pay ₹{{ amount }} with Razorpay 
+                      </span>
+                      <span *ngIf="razorpayLoading" class="loading-state">
+                        <svg class="spin" width="18" height="18" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"/>
+                        </svg>
+                        Starting payment...
+                      </span>
+                    </button>
 
-                    <p class="qr-upi-id"><strong>SMS Foundation</strong></p>
-
-                    <div class="upi-app-buttons">
-                      <a [href]="phonePeLink" class="upi-app-btn phonepe-btn" (click)="onQrClick($event)">PhonePe</a>
-                      <a [href]="gpayLink"    class="upi-app-btn gpay-btn"    (click)="onQrClick($event)">GPay</a>
-                      <a [href]="paytmLink"   class="upi-app-btn paytm-btn"   (click)="onQrClick($event)">Paytm</a>
-                    </div>
+                    <p class="field-hint" style="margin-top:0.75rem;">
+                      You'll be redirected to Razorpay's secure checkout window.
+                      On success, your payment is confirmed automatically.
+                    </p>
                   </div>
 
                   <div class="payment-steps">
-                    <div class="pay-step">
-                      <span class="pay-step-num">1</span>
-                      <span>Tap the QR image or an app button to auto-open your UPI app</span>
-                    </div>
-                    <div class="pay-step">
-                      <span class="pay-step-num">2</span>
-                      <span>Or scan the QR / enter UPI ID on desktop</span>
-                    </div>
-                    <div class="pay-step">
-                      <span class="pay-step-num">3</span>
-                      <span>Pay <strong>{{ isWorker ? '₹1,200' : '₹200' }}</strong> and note the UTR number from your UPI app</span>
-                    </div>
-                    <div class="pay-step">
-                      <span class="pay-step-num">4</span>
-                      <span>Enter UTR below and click <strong>Confirm Payment</strong></span>
-                    </div>
+                    <div class="pay-step"><span class="pay-step-num">1</span><span>Click <strong>Pay with Razorpay</strong> above</span></div>
+                    <div class="pay-step"><span class="pay-step-num">2</span><span>Complete payment via UPI, card, netbanking, or wallet</span></div>
+                    <div class="pay-step"><span class="pay-step-num">3</span><span>Your registration is confirmed automatically on success</span></div>
                   </div>
-                </div><!-- /payment-qr-section -->
+                </div>
 
-                <!-- UTR Confirmation form -->
+                <!-- ── Manual fallback (kept in case Razorpay is unreachable) ── -->
                 <div class="payment-confirm-section">
                   <h4 class="payment-sub-title">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -757,42 +805,34 @@
                       <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
                       <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
                     </svg>
-                    Confirm Payment
+                    Already Paid? Confirm Manually
                   </h4>
 
-                  <!-- Inline confirmation number reminder -->
                   <div class="conf-reminder">
                     <span class="conf-reminder-label">Confirmation No.:</span>
                     <span class="conf-reminder-value">{{ confirmationNumber }}</span>
                   </div>
 
-                  <!-- UTR input -->
                   <div class="field-group">
-                    <label class="field-label">
-                      UTR / Transaction Number <span class="req-star">*</span>
-                    </label>
+                    <label class="field-label">Payment / UTR Reference <span class="req-star">*</span></label>
                     <div class="input-wrap" [class.error]="isInvalid('utr')">
                       <input type="text"
                              formControlName="utr"
-                             placeholder="Enter UTR number"
+                             placeholder="Enter payment reference number"
                              maxlength="22"
                              (input)="onUtrInput($event)" />
                     </div>
-                    <span class="field-error" *ngIf="isInvalid('utr')">UTR number is required</span>
-                    <span class="field-hint">
-                      Find the UTR / Reference number in your UPI app transaction history
-                    </span>
+                    <span class="field-error" *ngIf="isInvalid('utr')">Reference number is required</span>
+                    <span class="field-hint">Only needed if you paid outside the Razorpay button above</span>
                   </div>
 
-                  <!-- Amount (readonly) -->
                   <div class="field-group">
                     <label class="field-label">Amount Paid <span class="req-star">*</span></label>
                     <div class="input-wrap input-readonly">
-                      <input type="text" [value]="isWorker ? '₹1,200' : '₹200'" readonly />
+                      <input type="text" [value]="isWorker ? '₹1200' : '₹200'" readonly />
                     </div>
                   </div>
 
-                  <!-- Email notice -->
                   <div class="email-notice">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2">
@@ -802,7 +842,6 @@
                     A confirmation email will be sent to your registered email address after payment is confirmed.
                   </div>
 
-                  <!-- Confirm button -->
                   <button type="button" class="btn-submit"
                           [disabled]="loading" (click)="confirmPayment()">
                     <span *ngIf="!loading">
@@ -825,11 +864,9 @@
                   <button type="button" class="btn-back" (click)="switchTab('registration')">
                     ← Back to Registration
                   </button>
+                </div>
 
-                </div><!-- /payment-confirm-section -->
-
-              </div><!-- /payment-body -->
-
+              </div>
             </div>
             <!-- END TAB 2 -->
 
@@ -880,3 +917,14 @@
   </section>
 
 </div><!-- /signup-page -->
+
+<!-- Add this near the form, for testing only -->
+<div class="test-data-btn" style="margin: 1rem 0; text-align: right;">
+  <button 
+    type="button" 
+    class="btn-test" 
+    (click)="fillRandomTestData()"
+    style="background: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+    🔧 Fill Test Data
+  </button>
+</div>

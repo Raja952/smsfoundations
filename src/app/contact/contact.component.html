@@ -17,20 +17,13 @@
           We're Here to Help
         </div>
         <h1>Get In <span>Touch</span></h1>
-        <!-- <p>Have a question, want to join our mission, or just want to say hello? We'd love to hear from you.</p> -->
-        <div class="breadcrumb">
-          <!-- <a routerLink="/">Home</a>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-          <span>Contact Us</span> -->
-        </div>
+        <div class="breadcrumb"></div>
       </div>
     </div>
 
     <div class="hero-wave">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none">
-        <path d="M0,0 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="#f4f6fa"></path>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0,0 C480,40 960,0 1440,28 L1440,40 L0,40 Z" fill="#f4f6fa"></path>
       </svg>
     </div>
   </section>
@@ -41,7 +34,6 @@
   <section class="info-section">
     <div class="container">
 
-      <!-- Alerts -->
       <div class="alert alert-success" *ngIf="successMessage">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="20 6 9 17 4 12"></polyline>
@@ -60,7 +52,6 @@
         <button class="alert-close" (click)="errorMessage = ''">×</button>
       </div>
 
-  
     </div>
   </section>
 
@@ -81,14 +72,11 @@
              *ngFor="let con of Contacts; let i = index"
              data-aos="fade-up"
              [attr.data-aos-delay]="i * 60"
-             (mouseenter)="onMouseEnter(con, $event)"
-             (mouseleave)="onMouseLeave()"
-             (click)="openModal(con, $event)"
+             (click)="openModal(con)"
              role="button"
              tabindex="0"
              (keyup.enter)="openModal(con)">
 
-          <!-- Member Image or Avatar -->
           <div class="member-image">
             <img *ngIf="con.img"
                  class="memImage"
@@ -102,7 +90,6 @@
 
             <div class="member-overlay"></div>
 
-            <!-- Hover Icon -->
             <div class="member-hover-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -111,7 +98,6 @@
             </div>
           </div>
 
-          <!-- Member Info -->
           <div class="info-card-body">
             <h4 class="member-name" [title]="con.name">{{ con.name }}</h4>
             <span class="member-role">{{ con.role }}</span>
@@ -262,11 +248,8 @@
             <div class="map-frame">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.405348402873!2d72.865239!3d19.113024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c83c05b7fc89%3A0xbe87eb4c6a4a17ee!2sAndheri%20East%2C%20Mumbai%2C%20Maharashtra%20400093!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style="border:0;"
-                allowfullscreen=""
-                loading="lazy"
+                width="100%" height="100%" style="border:0;"
+                allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
               </iframe>
             </div>
@@ -280,9 +263,7 @@
                 Gopal Sadan Building, Near Sani Mandir, Jija Mata Road, Pump House, Andheri East, Mumbai – 400093
               </div>
               <a href="https://maps.google.com/?q=Andheri+East+Mumbai"
-                 target="_blank"
-                 rel="noopener"
-                 class="map-directions-btn">
+                 target="_blank" rel="noopener" class="map-directions-btn">
                 Open in Google Maps
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
@@ -293,6 +274,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -301,308 +283,116 @@
        MEMBER DETAIL MODAL
   ═══════════════════════════════════════════════════ -->
 
- <!-- ═══════════════════════════════════════════════════
-     MEMBER DETAIL MODAL - FIXED VERSION
-═══════════════════════════════════════════════════ -->
+  <!-- Backdrop: clicking it closes the modal -->
+  <div class="modal-backdrop fade"
+       *ngIf="showModal"
+       [class.show]="showModal"
+       (click)="closeModal()">
+  </div>
 
-<!-- Modal Backdrop - with fade effect -->
-<div class="modal-backdrop fade" 
-     *ngIf="showModal" 
-     [class.show]="showModal"
-     (click)="closeModal()">
-</div>
+  <!-- Modal wrapper: clicking the dark area (outside dialog) also closes -->
+  <div class="modal"
+       *ngIf="showModal"
+       [class.show]="showModal"
+       [style.display]="showModal ? 'block' : 'none'"
+       (click)="closeModal()">
 
-<!-- Modal -->
-<div class="modal" 
-     *ngIf="showModal" 
-     [class.show]="showModal"
-     [style.display]="showModal ? 'block' : 'none'"
-     (mouseleave)="closeModal()">
+    <!-- Dialog: stopPropagation prevents click from bubbling up to wrapper -->
+    <div class="modal-dialog modal-dialog-centered modal-lg"
+         (click)="$event.stopPropagation()">
 
-  <!-- Modal Dialog -->
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <div class="modal-member-info">
-          <span class="modal-role-badge">{{ selectedMember?.role }}</span>
-          <h3 class="modal-member-name">{{ selectedMember?.name }}</h3>
-        </div>
-        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
-      </div>
+      <div class="modal-content">
 
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <!-- Member Photo -->
-            <div class="modal-member-photo mb-3">
-              <img *ngIf="selectedMember?.img" 
-                   [src]="selectedMember?.img" 
-                   [alt]="selectedMember?.alt || selectedMember?.name"
-                   class="img-fluid rounded-circle"
-                   style="width: 150px; height: 150px; object-fit: cover;"
-                   >
-              <div *ngIf="!selectedMember?.img" class="modal-avatar rounded-circle d-flex align-items-center justify-content-center mx-auto" 
-                   style="width: 150px; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 48px;">
-                <span>{{ getInitials(selectedMember?.name || '') }}</span>
-              </div>
-            </div>
-            
-            <!-- Quick Contact -->
-            <div class="modal-quick-contact mt-3">
-              <a *ngIf="selectedMember?.phone" 
-                 [href]="'tel:' + selectedMember?.phone" 
-                 class="btn btn-outline-primary btn-sm w-100 mb-2">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path>
-                </svg>
-                Call
-              </a>
-              <a *ngIf="selectedMember?.email" 
-                 [href]="'mailto:' + selectedMember?.email" 
-                 class="btn btn-outline-primary btn-sm w-100">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                Email
-              </a>
-            </div>
+        <div class="modal-header">
+          <div class="modal-member-info">
+            <span class="modal-role-badge">{{ selectedMember?.role }}</span>
+            <h3 class="modal-member-name">{{ selectedMember?.name }}</h3>
           </div>
-          
-          <div class="col-md-8">
-            <!-- Bio Section -->
-            <div class="modal-bio-section">
-              <h5 class="modal-section-title">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
-                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </h5>
-              <p class="modal-bio">{{ selectedMember?.bio }}</p>
+          <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <div class="modal-member-photo mb-3">
+                <img *ngIf="selectedMember?.img"
+                     [src]="selectedMember?.img"
+                     [alt]="selectedMember?.alt || selectedMember?.name"
+                     class="img-fluid rounded-circle"
+                     style="width: 150px; height: 150px; object-fit: cover;">
+                <div *ngIf="!selectedMember?.img"
+                     class="modal-avatar rounded-circle d-flex align-items-center justify-content-center mx-auto"
+                     style="width:150px;height:150px;background:linear-gradient(135deg,#0f1228 0%,#1a1a3e 100%);color:#23bff5;font-size:48px;">
+                  <span>{{ getInitials(selectedMember?.name || '') }}</span>
+                </div>
+              </div>
+
+              <div class="modal-quick-contact mt-3">
+                <a *ngIf="selectedMember?.phone"
+                   [href]="'tel:' + selectedMember?.phone"
+                   class="btn btn-outline-primary btn-sm w-100 mb-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path>
+                  </svg>
+                  Call
+                </a>
+                <a *ngIf="selectedMember?.email"
+                   [href]="'mailto:' + selectedMember?.email"
+                   class="btn btn-outline-primary btn-sm w-100">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  Email
+                </a>
+              </div>
             </div>
 
-            <!-- Contact Details -->
-            <div class="modal-contact-details mt-4" *ngIf="selectedMember?.phone || selectedMember?.email">
-              <h5 class="modal-section-title">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
-                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                Contact Information
-              </h5>
-              
-              <div class="contact-detail-item" *ngIf="selectedMember?.phone">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path>
-                </svg>
-                <span>{{ selectedMember?.phone }}</span>
+            <div class="col-md-8">
+              <div class="modal-bio-section">
+                <h5 class="modal-section-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </h5>
+                <p class="modal-bio">{{ selectedMember?.bio }}</p>
               </div>
-              
-              <div class="contact-detail-item" *ngIf="selectedMember?.email">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                <span>{{ selectedMember?.email }}</span>
+
+              <div class="modal-contact-details mt-4" *ngIf="selectedMember?.phone || selectedMember?.email">
+                <h5 class="modal-section-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  Contact Information
+                </h5>
+
+                <div class="contact-detail-item" *ngIf="selectedMember?.phone">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path>
+                  </svg>
+                  <span>{{ selectedMember?.phone }}</span>
+                </div>
+
+                <div class="contact-detail-item" *ngIf="selectedMember?.email">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <span>{{ selectedMember?.email }}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-modal-close" (click)="closeModal()">Close</button>
+        </div>
 
+      </div>
     </div>
   </div>
-</div>
 
 </div>
-
-<style>
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1040;
-  transition: opacity 0.15s linear;
-  
-  &.fade {
-    opacity: 0;
-    
-    &.show {
-      opacity: 0.5;
-    }
-  }
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
-  z-index: 1050;
-  display: none;
-  
-  &.show {
-    display: block;
-  }
-}
-
-.modal-dialog {
-  position: relative;
-  width: auto;
-  margin: 1.75rem auto;
-  max-width: 800px;
-  pointer-events: none;
-  
-  &.modal-dialog-centered {
-    display: flex;
-    align-items: center;
-    min-height: calc(100% - 3.5rem);
-  }
-}
-
-.modal-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  pointer-events: auto;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
-  outline: 0;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.modal-header {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem;
-  border-bottom: 1px solid #dee2e6;
-  border-top-left-radius: calc(0.5rem - 1px);
-  border-top-right-radius: calc(0.5rem - 1px);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  
-  .btn-close {
-    color: white;
-    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
-    opacity: 0.8;
-    
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-
-.modal-member-info {
-  .modal-role-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .modal-member-name {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-}
-
-.modal-body {
-  position: relative;
-  flex: 1 1 auto;
-  padding: 1.5rem;
-}
-
-.modal-footer {
-  display: flex;
-  flex-wrap: wrap;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 1rem;
-  border-top: 1px solid #dee2e6;
-  border-bottom-right-radius: calc(0.5rem - 1px);
-  border-bottom-left-radius: calc(0.5rem - 1px);
-}
-
-.modal-section-title {
-  display: flex;
-  align-items: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 1rem;
-  
-  svg {
-    color: #667eea;
-  }
-}
-
-.modal-bio {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #666;
-  margin: 0;
-}
-
-.contact-detail-item {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0;
-  color: #555;
-  
-  svg {
-    color: #667eea;
-    flex-shrink: 0;
-  }
-  
-  span {
-    word-break: break-word;
-  }
-}
-
-.modal-quick-contact {
-  .btn-outline-primary {
-    color: #667eea;
-    border-color: #667eea;
-    
-    &:hover {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border-color: transparent;
-    }
-  }
-}
-
-// Animation
-.modal.fade .modal-dialog {
-  transition: transform 0.3s ease-out;
-  transform: translate(0, -50px);
-}
-
-.modal.show .modal-dialog {
-  transform: none;
-}
-</style>

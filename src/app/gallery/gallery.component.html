@@ -1,36 +1,28 @@
 <div class="gallery-page">
 
   <!-- ═══ HERO ═══ -->
-  <section class="gallery-hero">
-    <div class="hero-particles">
-      <span *ngFor="let p of particles" class="particle" [style.left]="p.x" [style.top]="p.y" [style.animationDelay]="p.delay" [style.width]="p.size" [style.height]="p.size"></span>
-    </div>
-    <div class="hero-glow g1"></div>
-    <div class="hero-glow g2"></div>
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-eyebrow">
-          <span class="eyebrow-line"></span>
-          <span class="eyebrow-text">SMS Foundation</span>
-          <span class="eyebrow-line"></span>
-        </div>
-        <h1>Our <em>Gallery</em></h1>
-        <!-- <p>Moments captured — from community outreach to product milestones</p>
-        <div class="hero-stats">
-          <div class="stat"><strong>{{ galleryImages.length }}+</strong><span>Photos</span></div>
-          <div class="stat-div"></div>
-          <div class="stat"><strong>{{ videos.length }}+</strong><span>Videos</span></div>
-          <div class="stat-div"></div>
-          <div class="stat"><strong>{{ trainingItems.length }}+</strong><span>Sessions</span></div>
-        </div> -->
+<!-- ═══ HERO ═══ -->
+<section class="gallery-hero">
+  <div class="hero-shapes">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        SMS Foundation
       </div>
+      <h1>Our <span>Gallery</span></h1>
     </div>
-    <div class="hero-wave">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,30 C360,60 720,0 1080,40 C1260,55 1380,35 1440,30 L1440,60 L0,60 Z" fill="#f4f6fa"/>
-      </svg>
-    </div>
-  </section>
+  </div>
+  <div class="hero-wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
+      <path d="M0,0 C480,40 960,0 1440,28 L1440,40 L0,40 Z" fill="#f4f6fa"/>
+    </svg>
+  </div>
+</section>
 
   <!-- ═══ MAIN TABS ═══ -->
   <section class="gallery-section">
